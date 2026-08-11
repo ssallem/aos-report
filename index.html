@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>앱 생성·배포 자동화 검토 — Diem / Penna</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- theme: Quiet Sheet v1 — 정본은 process/theme.css. 수정 시 정본을 먼저 고칠 것 -->
+<style>
+/* ============================================================
+   AosAppCreater — 보고 페이지 표준 테마  "Quiet Sheet"  v1
+   원본(레퍼런스 구현): https://ssallem.github.io/penna-app/
+   ------------------------------------------------------------
+   이 파일이 테마의 SSOT다. 각 보고 페이지는 이 CSS를 <style>에
+   인라인 복사해 단일 파일로 배포한다(메일·GitHub Pages 공유용).
+   수정할 일이 생기면 반드시 이 파일을 먼저 고치고 페이지에 반영한다.
+
+   원칙 — 카드를 쓰지 않는다.
+   배경 채운 박스·둥근 모서리·그림자 대신 헤어라인 괘선으로만 구분한다.
+   숫자는 Space Grotesk(tnum), 본문은 Pretendard. 단칸 672px.
+   ============================================================ */
+
+:root{
+  --paper:#FAF9F7; --ink:#211E1A; --sub:#6F6A62; --line:#DFD9D1;
+  --accent:#0A6BBD; --mint:#1E836B; --rule:#211E1A;
+  --amber:#A8730B; --rust:#A8443A;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#171512; --ink:#EDE9E3; --sub:#A39C90; --line:#35312A;
+    --accent:#7FC0F5; --mint:#5ECBB0; --rule:#EDE9E3;
+    --amber:#D9A441; --rust:#E8877C;
+  }
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Pretendard","Malgun Gothic",sans-serif;
+  font-size:16.5px; line-height:1.85; letter-spacing:-.006em;
+  padding:0 22px 96px; hanging-punctuation:first;
+}
+.sheet{max-width:672px;margin:0 auto}
+.num{font-family:"Space Grotesk",monospace;font-feature-settings:"tnum";font-weight:500;letter-spacing:0}
+
+/* masthead */
+header{padding:64px 0 0}
+.mark{width:26px;height:2px;background:var(--rule);margin-bottom:26px}
+.kicker{font-size:.71rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sub);font-weight:600}
+h1{font-weight:600;font-size:2.3rem;line-height:1.22;letter-spacing:-.035em;margin:12px 0 0}
+h1 span{color:var(--accent)}
+.standfirst{margin-top:18px;color:var(--sub);font-size:1.02rem}
+.dateline{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+
+/* sections — thin tick instead of numbers */
+section{margin-top:56px}
+section::before{content:"";display:block;width:18px;height:1px;background:var(--rule);margin-bottom:18px;opacity:.55}
+h2{font-weight:600;font-size:1.3rem;letter-spacing:-.025em;margin-bottom:3px}
+.subtle{color:var(--sub);font-size:.87rem;margin-bottom:14px}
+p{margin-top:14px;text-wrap:pretty}
+p.first{margin-top:10px}
+strong{font-weight:600}
+
+/* spec band — 대시보드 수치. 카드 대신 괘선 밴드 */
+.spec{border-top:1px solid var(--rule);border-bottom:1px solid var(--line);margin-top:26px}
+.spec dl{display:flex;flex-wrap:wrap}
+.spec div{flex:1 1 33%;min-width:110px;padding:14px 14px 14px 0;border-bottom:1px solid var(--line)}
+.spec div:nth-child(n+4){border-bottom:none}
+.spec dt{font-size:.69rem;letter-spacing:.11em;text-transform:uppercase;color:var(--sub);font-weight:600}
+.spec dd{font-size:1.3rem;margin-top:2px;font-weight:500}
+.spec .unit{font-size:.8rem;color:var(--sub);font-family:"Pretendard","Malgun Gothic",sans-serif}
+
+/* figures */
+figure{margin-top:26px}
+figure img{width:100%;display:block;border:1px solid var(--line)}
+figcaption{font-size:.85rem;color:var(--sub);margin-top:9px}
+.pair{display:flex;gap:14px}
+.pair figure{margin-top:0;flex:1}
+.duo{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start;margin-top:30px}
+.duo.flip{grid-template-columns:1fr 1.15fr}
+.duo.flip .txt{order:-1}
+.duo h3{font-weight:600;font-size:1rem;margin-bottom:2px;letter-spacing:-.02em}
+.duo p{margin-top:6px;font-size:.93rem;color:var(--sub)}
+.strip{display:flex;gap:12px;overflow-x:auto;margin-top:26px;padding-bottom:6px;scroll-snap-type:x mandatory}
+.strip figure{margin-top:0;flex:0 0 132px;scroll-snap-align:start}
+.strip figcaption{font-size:.77rem}
+@media (max-width:560px){.duo,.duo.flip{grid-template-columns:1fr}.duo.flip .txt{order:0}}
+
+/* margin note — 강조 문단. 배경 없이 왼쪽 괘선만 */
+.note{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin-top:26px;color:var(--sub);font-size:.93rem}
+.note b{color:var(--ink);font-weight:600}
+.note.warn{border-left-color:var(--amber)}
+.note.bad{border-left-color:var(--rust)}
+
+/* 인용 — 외부 문서 원문 */
+.quote{border-left:1px solid var(--line);padding-left:16px;margin-top:20px;color:var(--sub);font-size:.93rem;font-style:italic}
+.quote cite{display:block;font-style:normal;font-size:.78rem;margin-top:7px}
+
+/* name block — 이름 유래·탈락 후보 (루트 CLAUDE.md 규칙) */
+.name{margin-top:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0}
+.name .word{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:2rem;letter-spacing:-.02em;line-height:1}
+.name .gloss{color:var(--sub);font-size:.86rem;margin-top:6px}
+.cands{margin-top:16px;font-size:.9rem}
+.cands div{display:flex;gap:12px;padding:7px 0;border-top:1px solid var(--line);color:var(--sub)}
+.cands div:first-child{border-top:none}
+.cands b{flex:0 0 74px;color:var(--ink);font-weight:600}
+
+/* measures */
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:.92rem}
+caption{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);font-weight:600;padding-bottom:8px}
+th,td{padding:9px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{border-bottom:1px solid var(--rule);font-weight:600;font-size:.78rem;color:var(--sub)}
+td.r,th.r{text-align:right}
+td.r.num,td.num.r{white-space:nowrap}   /* 우측정렬 수치는 줄바꿈 금지 */
+td.was{color:var(--sub);text-decoration:line-through;text-decoration-thickness:1px}
+td.now{color:var(--mint)}
+
+/* verdict — 가능/부분/불가 판정. 알약 대신 색점 + 텍스트 */
+.v{font-weight:600;white-space:nowrap}
+.v::before{content:"";display:inline-block;width:6px;height:6px;margin-right:7px;background:currentColor;vertical-align:1.5px}
+.v-ok{color:var(--mint)} .v-mid{color:var(--amber)} .v-no{color:var(--rust)}
+
+/* hanging lists */
+.items{margin-top:16px}
+.items li{list-style:none;padding-left:22px;text-indent:-22px;margin-bottom:9px}
+.items li::before{content:"—";color:var(--sub);padding-right:9px}
+.items li b{font-weight:600}
+
+/* sequence — 순서가 있는 단계. 번호는 여백에 매단다 */
+.seq{margin-top:18px;list-style:none;counter-reset:sq}
+.seq li{counter-increment:sq;position:relative;padding-left:38px;margin-bottom:16px}
+.seq li::before{
+  content:counter(sq);position:absolute;left:0;top:0;
+  font-family:"Space Grotesk",monospace;font-weight:500;font-size:.95rem;
+  color:var(--sub);border-bottom:1px solid var(--line);padding-bottom:1px;
+}
+.seq b{font-weight:600;display:block}
+.seq .when{font-size:.8rem;color:var(--accent);font-weight:600}
+.seq p{margin-top:3px;font-size:.92rem;color:var(--sub)}
+
+footer{margin-top:64px;padding-top:14px;border-top:1px solid var(--line);color:var(--sub);font-size:.79rem}
+footer p{margin-top:8px}
+a{color:var(--accent);text-underline-offset:3px}
+
+@media print{
+  body{padding:0}
+  .strip{overflow:visible;flex-wrap:wrap}
+  section{break-inside:avoid}
+  table,.name,.spec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <div class="mark"></div>
+  <p class="kicker">앱 생성·배포 자동화 검토</p>
+  <h1>앱 만드는 일은 자동화되고,<br>앱 올리는 일은 <span>구글이 막습니다</span></h1>
+  <p class="standfirst">1호 앱을 4일에 만들고, 그 골격을 재사용해 2호를 2일에 만들었습니다. 제작 쪽은 이미 절반이 자동화된 셈입니다. 반면 스토어 배포는 구글이 핵심 관문을 API에 열어주지 않아, 첫 출시는 손으로 해야 하고 두 번째 릴리스부터 자동화가 열립니다.</p>
+  <p class="dateline">2026년 8월 11일 · Diem <span class="num">v1.2.0</span> · Penna <span class="num">v0.3.0</span> · 구글 공식 문서 원문 확인 기준</p>
+</header>
+
+<div class="spec">
+  <dl>
+    <div><dt>1호 제작</dt><dd class="num">4 <span class="unit">일</span></dd></div>
+    <div><dt>2호 제작</dt><dd class="num">2 <span class="unit">일</span></dd></div>
+    <div><dt>회당 절감</dt><dd class="num">20–40 <span class="unit">분</span></dd></div>
+    <div><dt>첫 출시 자동화</dt><dd class="num" style="color:var(--rust)">10–15<span class="unit" style="color:var(--rust)">%</span></dd></div>
+    <div><dt>업데이트 자동화</dt><dd class="num" style="color:var(--mint)">90–95<span class="unit" style="color:var(--mint)">%</span></dd></div>
+    <div><dt>손익분기</dt><dd style="font-size:1.02rem;padding-top:6px">3번째 릴리스</dd></div>
+  </dl>
+</div>
+
+<section>
+  <h2>지금 어디까지 왔나</h2>
+  <p class="subtle">두 앱 모두 만드는 일은 끝났고, 올리는 일이 남았습니다</p>
+  <table>
+    <thead><tr><th style="width:23%">앱</th><th>개발</th><th>배포</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Diem</strong><br><span style="color:var(--sub);font-size:.85rem">D-Day 카운트다운</span></td>
+        <td><span class="v v-ok">완료</span><br><span style="color:var(--sub)">유닛테스트 <span class="num">79</span>건 · <span class="num">14</span>개 언어 · 스토어 자산 완비</span></td>
+        <td><span class="v v-mid">대기</span><br><span style="color:var(--sub)">게시 절차만 남음. 조직 계정 전화번호 인증 진행 중</span></td>
+      </tr>
+      <tr>
+        <td><strong>Penna</strong><br><span style="color:var(--sub);font-size:.85rem">노트·메모</span></td>
+        <td><span class="v v-mid">마무리 중</span><br><span style="color:var(--sub)">유닛테스트 <span class="num">73</span>건 · <span class="num">14</span>개 언어 · 차별화 기능 구현 완료</span></td>
+        <td><span class="v v-no">미착수</span><br><span style="color:var(--sub)">서명키·실 광고 ID·스토어 자산 전무</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>이름</h2>
+  <p class="subtle">포트폴리오가 한 브랜드로 읽히도록 라틴어 계열로 통일했습니다</p>
+  <div class="name">
+    <div class="word">Diem &nbsp;·&nbsp; Penna</div>
+    <p class="gloss">라틴어로 각각 '날(day)'과 '펜, 깃털'. 나란히 놓으면 <strong style="color:var(--ink)">하루를 펜으로 적는다</strong>가 됩니다.</p>
+    <p style="margin-top:12px">Diem은 D-Day 카운트다운의 정체와 정확히 맞는 단어라 초기 작업명 “D-Day”에서 개명했습니다. Penna는 노트 카테고리에 동명 앱이 <span class="num">0</span>건이고 <span class="num">14</span>개 지원 언어권 어디서도 발음·뜻에 걸리는 데가 없었습니다. 앱이 늘어나도 같은 계보로 이어붙일 수 있는 체계입니다.</p>
+    <div class="cands">
+      <div><b>Nota</b><span>라틴어 '기록'. 뜻은 가장 정확했지만 동명 노트 앱이 여럿이고 100만 다운로드 규모의 Notta와 혼동돼 탈락.</span></div>
+      <div><b>Tabula</b><span>'빈 서판'(tabula rasa). 충돌은 없었으나 3음절로 Diem과 리듬이 맞지 않아 차점.</span></div>
+      <div><b>Folio</b><span>'잎, 한 장'. 유사명이 있어 검색에서 불리.</span></div>
+    </div>
+    <p style="margin-top:14px;font-size:.92rem;color:var(--sub)">위 탈락 후보는 Penna 선정 시 기록입니다. Diem은 이름 조사 규칙을 세우기 전이라 후보 기록이 남아 있지 않습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>앱 “생성” 자동화 — 가능합니다</h2>
+  <p class="subtle">전부 우리 PC 안에서 벌어지는 일이라 외부 제약이 없습니다</p>
+  <p class="first">제작 기간이 <span class="num">4</span>일에서 <span class="num">2</span>일로 준 것은 골격 재사용의 효과입니다. 2호 Penna의 첫 커밋은 <strong>“1호 골격을 그대로 이식”</strong> 한 건이었습니다 — 파일 <span class="num">107</span>개를 복제하고 <span class="num">55</span>개 파일의 패키지명을 바꾸는 작업으로, 반나절도 걸리지 않았습니다. 남은 이틀은 D-Day를 노트로 바꾸는 창작 작업이었습니다.</p>
+  <p>제작 과정 전체를 <span class="num">40</span>단계로 분해해 각 단계가 기계로 대체 가능한지 판정했습니다.</p>
+  <ul class="items">
+    <li><b><span class="v v-ok">완전 자동 &nbsp;15단계</span></b> — 골격 복제, 패키지명 일괄 변경, 테마·리소스 리네임, <span class="num">14</span>개 언어 번역 키 정합 검사, 잔재 심볼 검출, 릴리스 빌드 위생 점검, 버전 올리기. <strong>스크립트가 대신합니다.</strong></li>
+    <li><b><span class="v v-mid">반자동 &nbsp;21단계</span></b> — 도메인 설계, 화면 구현, 코드 검토, 품질 점검. <strong>절차서를 따라 AI가 수행하고 사람은 확인만</strong> 합니다.</li>
+    <li><b><span class="v v-no">사람 판단 &nbsp;4단계</span></b> — 앱 아이템 선정, 디자인 방향 승인, 이름 확정, 차별화 기능 선택. <strong>대체 불가이고 대체해서도 안 되는 지점</strong>입니다.</li>
+  </ul>
+  <div class="note">
+    <b>“자동화 프로그램”보다 “표준 파이프라인”이 맞습니다.</b> 버튼 하나로 앱이 튀어나오는 프로그램은 과잉입니다. 창작·판단이 들어가는 21단계는 어차피 사람과 AI가 해야 합니다. 실익이 있는 건 기계적 반복 15단계를 스크립트로 묶고 나머지를 절차서로 고정하는 것입니다. 그러면 3호부터는 “무엇을 할지 고민하는 시간”이 사라집니다.
+  </div>
+</section>
+
+<section>
+  <h2>앱 “배포” 자동화 — 구글이 관문을 잠갔습니다</h2>
+  <p class="subtle">여기가 실제로 물어보신 지점입니다</p>
+  <p class="first">구글은 배포 자동화용 공식 API를 제공합니다. 다만 <strong>앱 등록 · 심사 승인 · 법적 선언</strong> 세 관문은 의도적으로 열어주지 않습니다.</p>
+  <div class="quote">
+    이 API는 <strong>이미 존재하는 앱</strong>(APK를 하나 이상 업로드한 앱)만 변경할 수 있다. 따라서 이 API를 쓰기 전에 반드시 Play Console을 통해 APK를 최소 하나 업로드해야 한다.
+    <cite>— Google 공식 문서, developers.google.com/android-publisher/edits</cite>
+  </div>
+  <table>
+    <caption>배포 8단계 판정</caption>
+    <thead><tr><th>단계</th><th>자동화</th><th>사유</th></tr></thead>
+    <tbody>
+      <tr><td>0 · 개발자 계정 인증</td><td><span class="v v-no">불가</span></td><td>신원·전화 인증. 관련 API 없음 <em>(현재 진행 중)</em></td></tr>
+      <tr><td>1 · 앱 등록</td><td><span class="v v-no">영구 불가</span></td><td>API에 앱을 만드는 기능 자체가 없음</td></tr>
+      <tr><td>2 · 앱 콘텐츠 선언</td><td><span class="v v-no">12개 중 1개</span></td><td>“데이터 보안”만 가능. 콘텐츠 등급 설문·광고 선언·타겟 연령 등 11개는 API 없음</td></tr>
+      <tr><td>3 · 스토어 등록정보</td><td><span class="v v-ok">약 75%</span></td><td>제목·설명·스크린샷·연락처 가능. 카테고리·태그는 항목 자체가 없음</td></tr>
+      <tr><td>4 · 앱 서명 등록</td><td><span class="v v-no">불가</span></td><td>Console 전용. 첫 업로드 시 자동 처리돼 손은 거의 안 감</td></tr>
+      <tr><td>5 · 내부 테스트 배포</td><td><span class="v v-ok">가능</span></td><td>최초 <span class="num">1</span>회만 수동, 이후 전부 자동</td></tr>
+      <tr><td>6 · 프로덕션 출시</td><td><span class="v v-mid">부분</span></td><td>릴리스 생성·단계적 출시·심사 제출 가능. 국가 선택은 최초 <span class="num">1</span>회 수동, 이후 상속</td></tr>
+      <tr><td>7 · 심사 결과 확인</td><td><span class="v v-no">불가</span></td><td>심사 상태를 조회하는 API가 없음. 메일·Console로 확인</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>그래서 남는 계산</h2>
+  <p class="subtle">첫 출시는 자동화하면 오히려 손해입니다</p>
+  <table>
+    <thead><tr><th style="width:31%">상황</th><th class="r" style="width:15%">자동화</th><th>판단</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>신규 앱 첫 출시</strong><br><span style="color:var(--sub);font-size:.85rem">지금의 Diem · Penna</span></td>
+        <td class="r num" style="color:var(--rust)">10–15%</td>
+        <td>세팅에 드는 시간이 그냥 클릭하는 시간보다 깁니다. <strong>손으로 하는 게 빠릅니다.</strong></td>
+      </tr>
+      <tr>
+        <td><strong>기존 앱 업데이트</strong><br><span style="color:var(--sub);font-size:.85rem">Diem 두 번째 릴리스부터</span></td>
+        <td class="r num" style="color:var(--mint)">90–95%</td>
+        <td>명령 한 줄이 회당 <span class="num">20–40</span>분의 수작업을 대체합니다. <strong>반드시 도입할 가치가 있습니다.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>손익분기점은 앱당 <strong>세 번째 릴리스</strong>쯤입니다. 앱 <span class="num">2</span>개 × 연 <span class="num">4</span>회 업데이트 = 연 <span class="num">8</span>회면 도입 비용(반나절)을 확실히 넘어섭니다. 앱이 3호·4호로 늘면 격차는 더 벌어집니다.</p>
+  <div class="note">
+    <b>유리한 조건 하나.</b> 우리는 <strong>조직 계정</strong>이라 구글의 “테스터 12명 × 14일 비공개 테스트 의무”가 면제됩니다. 이 규칙은 개인 계정에만 적용됩니다. 내부 테스트 후 바로 프로덕션 신청이 가능해 출시 일정이 <span class="num">2</span>주 단축됩니다.
+  </div>
+</section>
+
+<section>
+  <h2>권장 진행 순서</h2>
+  <p class="subtle">자동화는 첫 승인 이후에 붙입니다</p>
+  <ol class="seq">
+    <li>
+      <b>Diem을 손으로 출시한다 <span class="when">지금 · 전화번호 인증 완료 직후</span></b>
+      <p>이미 752줄짜리 게시 가이드가 준비돼 있습니다. 자동화 코드는 한 줄도 쓰지 않습니다.</p>
+    </li>
+    <li>
+      <b>출시하면서 화면을 캡처하고 절차를 문서로 고정한다 <span class="when">출시와 동시</span></b>
+      <p>Play Console 실제 화면 약 120장 + 제작 40단계·배포 43단계 목록. 이게 나중 자동화의 설계도가 됩니다.</p>
+    </li>
+    <li>
+      <b>첫 승인 직후 배포 자동화를 붙인다 <span class="when">승인 후 · 반나절</span></b>
+      <p>배포 도구를 도입해 <strong>두 번째 릴리스</strong>를 자동으로 내보내며 검증합니다.</p>
+    </li>
+    <li>
+      <b>검증된 설정을 Penna에 복사한다 <span class="when">Penna 출시 시</span></b>
+      <p>한 번 검증한 뒤에 옮기므로 시행착오가 없습니다.</p>
+    </li>
+    <li>
+      <b>3호부터 앱 생성 스크립트를 적용한다 <span class="when">3호 착수 시</span></b>
+      <p>2단계에서 만든 절차서의 “완전 자동 15단계”를 스크립트로 묶습니다.</p>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2>결정이 필요한 사항</h2>
+  <p class="subtle">위의 두 건은 게시 전에 정해야 합니다</p>
+  <ul class="items">
+    <li><b><span class="v v-no">긴급</span> &nbsp;Penna 앱 식별자</b><br><span style="color:var(--sub)">Play에 <strong style="color:var(--ink)">한 번 올리면 영구히 바꿀 수 없습니다.</strong> 1호는 같은 이유로 식별자를 회사 도메인으로 바꿨는데 2호만 옛 이름으로 남아 있습니다.</span></li>
+    <li><b><span class="v v-no">긴급</span> &nbsp;서명키 보관 체계 점검</b><br><span style="color:var(--sub)">앱 서명키를 잃으면 <strong style="color:var(--ink)">그 앱은 영구히 업데이트할 수 없게 됩니다.</strong> 출시 전에 보관·백업 체계를 한 번 점검하고 확정해야 하며, 점검 항목은 정리를 마쳤습니다.</span></li>
+    <li><b><span class="v v-mid">시한</span> &nbsp;Target API 마감 <span class="num">8/31</span> (D-<span class="num">20</span>)</b><br><span style="color:var(--sub)">이후 미달 앱은 업로드 자체가 거부됩니다. <strong style="color:var(--ink)">두 앱 모두 이미 충족</strong>했으나 그 전에 출시를 마치는 편이 안전합니다.</span></li>
+    <li><b><span class="v v-mid">판단</span> &nbsp;타겟 연령대</b><br><span style="color:var(--sub)">문서 두 곳의 기재가 엇갈려 확정이 필요합니다. Penna는 광고가 켜져 있어 <span class="num">13</span>~<span class="num">17</span>세를 포함하면 비개인화 광고가 강제되어 광고 단가가 떨어집니다.</span></li>
+    <li><b><span class="v v-mid">보안</span> &nbsp;자격증명 취급 규칙</b><br><span style="color:var(--sub)">배포 자동화는 구글 계정 자격증명을 다룹니다. 도입 전에 보관 위치와 권한 범위를 먼저 정해두기로 했고, 방법은 확인을 마쳤습니다.</span></li>
+  </ul>
+</section>
+
+<footer>
+  <p><strong>근거</strong> — Google Play Android Developer API 공식 레퍼런스 및 Play Console 고객센터 문서 원문 확인(2026-08-11 기준), 두 앱의 커밋 기록, 프로젝트 내부 결정 로그.</p>
+  <p>제작 40단계·배포 43단계 전체 목록, 자동화 도구 설정안, 캡처 규약은 별도 실행 문서로 정리되어 있습니다.</p>
+</footer>
+
+</div>
+</body>
+</html>
