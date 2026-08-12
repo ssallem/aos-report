@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diem — Google Play 배포 실행 기록</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- theme: Quiet Sheet v1 - source of truth: process/theme.css -->
+<style>
+/* ============================================================
+   AosAppCreater — 보고 페이지 표준 테마  "Quiet Sheet"  v1
+   원본(레퍼런스 구현): https://ssallem.github.io/penna-app/
+   ------------------------------------------------------------
+   이 파일이 테마의 SSOT다. 각 보고 페이지는 이 CSS를 <style>에
+   인라인 복사해 단일 파일로 배포한다(메일·GitHub Pages 공유용).
+   수정할 일이 생기면 반드시 이 파일을 먼저 고치고 페이지에 반영한다.
+
+   원칙 — 카드를 쓰지 않는다.
+   배경 채운 박스·둥근 모서리·그림자 대신 헤어라인 괘선으로만 구분한다.
+   숫자는 Space Grotesk(tnum), 본문은 Pretendard. 단칸 672px.
+   ============================================================ */
+
+:root{
+  --paper:#FAF9F7; --ink:#211E1A; --sub:#6F6A62; --line:#DFD9D1;
+  --accent:#0A6BBD; --mint:#1E836B; --rule:#211E1A;
+  --amber:#A8730B; --rust:#A8443A;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#171512; --ink:#EDE9E3; --sub:#A39C90; --line:#35312A;
+    --accent:#7FC0F5; --mint:#5ECBB0; --rule:#EDE9E3;
+    --amber:#D9A441; --rust:#E8877C;
+  }
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Pretendard","Malgun Gothic",sans-serif;
+  font-size:16.5px; line-height:1.85; letter-spacing:-.006em;
+  padding:0 22px 96px; hanging-punctuation:first;
+}
+.sheet{max-width:672px;margin:0 auto}
+.num{font-family:"Space Grotesk",monospace;font-feature-settings:"tnum";font-weight:500;letter-spacing:0}
+
+/* masthead */
+header{padding:64px 0 0}
+.mark{width:26px;height:2px;background:var(--rule);margin-bottom:26px}
+.kicker{font-size:.71rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sub);font-weight:600}
+h1{font-weight:600;font-size:2.3rem;line-height:1.22;letter-spacing:-.035em;margin:12px 0 0}
+h1 span{color:var(--accent)}
+.standfirst{margin-top:18px;color:var(--sub);font-size:1.02rem}
+.dateline{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+
+/* sections — thin tick instead of numbers */
+section{margin-top:56px}
+section::before{content:"";display:block;width:18px;height:1px;background:var(--rule);margin-bottom:18px;opacity:.55}
+h2{font-weight:600;font-size:1.3rem;letter-spacing:-.025em;margin-bottom:3px}
+.subtle{color:var(--sub);font-size:.87rem;margin-bottom:14px}
+p{margin-top:14px;text-wrap:pretty}
+p.first{margin-top:10px}
+strong{font-weight:600}
+
+/* spec band — 대시보드 수치. 카드 대신 괘선 밴드 */
+.spec{border-top:1px solid var(--rule);border-bottom:1px solid var(--line);margin-top:26px}
+.spec dl{display:flex;flex-wrap:wrap}
+.spec div{flex:1 1 33%;min-width:110px;padding:14px 14px 14px 0;border-bottom:1px solid var(--line)}
+.spec div:nth-child(n+4){border-bottom:none}
+.spec dt{font-size:.69rem;letter-spacing:.11em;text-transform:uppercase;color:var(--sub);font-weight:600}
+.spec dd{font-size:1.3rem;margin-top:2px;font-weight:500}
+.spec .unit{font-size:.8rem;color:var(--sub);font-family:"Pretendard","Malgun Gothic",sans-serif}
+
+/* figures */
+figure{margin-top:26px}
+figure img{width:100%;display:block;border:1px solid var(--line)}
+figcaption{font-size:.85rem;color:var(--sub);margin-top:9px}
+.pair{display:flex;gap:14px}
+.pair figure{margin-top:0;flex:1}
+.duo{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start;margin-top:30px}
+.duo.flip{grid-template-columns:1fr 1.15fr}
+.duo.flip .txt{order:-1}
+.duo h3{font-weight:600;font-size:1rem;margin-bottom:2px;letter-spacing:-.02em}
+.duo p{margin-top:6px;font-size:.93rem;color:var(--sub)}
+.strip{display:flex;gap:12px;overflow-x:auto;margin-top:26px;padding-bottom:6px;scroll-snap-type:x mandatory}
+.strip figure{margin-top:0;flex:0 0 132px;scroll-snap-align:start}
+.strip figcaption{font-size:.77rem}
+@media (max-width:560px){.duo,.duo.flip{grid-template-columns:1fr}.duo.flip .txt{order:0}}
+
+/* margin note — 강조 문단. 배경 없이 왼쪽 괘선만 */
+.note{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin-top:26px;color:var(--sub);font-size:.93rem}
+.note b{color:var(--ink);font-weight:600}
+.note.warn{border-left-color:var(--amber)}
+.note.bad{border-left-color:var(--rust)}
+
+/* 인용 — 외부 문서 원문 */
+.quote{border-left:1px solid var(--line);padding-left:16px;margin-top:20px;color:var(--sub);font-size:.93rem;font-style:italic}
+.quote cite{display:block;font-style:normal;font-size:.78rem;margin-top:7px}
+
+/* name block — 이름 유래·탈락 후보 (루트 CLAUDE.md 규칙) */
+.name{margin-top:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0}
+.name .word{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:2rem;letter-spacing:-.02em;line-height:1}
+.name .gloss{color:var(--sub);font-size:.86rem;margin-top:6px}
+.cands{margin-top:16px;font-size:.9rem}
+.cands div{display:flex;gap:12px;padding:7px 0;border-top:1px solid var(--line);color:var(--sub)}
+.cands div:first-child{border-top:none}
+.cands b{flex:0 0 74px;color:var(--ink);font-weight:600}
+
+/* measures */
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:.92rem}
+caption{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);font-weight:600;padding-bottom:8px}
+th,td{padding:9px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{border-bottom:1px solid var(--rule);font-weight:600;font-size:.78rem;color:var(--sub)}
+td.r,th.r{text-align:right}
+td.r.num,td.num.r{white-space:nowrap}   /* 우측정렬 수치는 줄바꿈 금지 */
+td.was{color:var(--sub);text-decoration:line-through;text-decoration-thickness:1px}
+td.now{color:var(--mint)}
+
+/* verdict — 가능/부분/불가 판정. 알약 대신 색점 + 텍스트 */
+.v{font-weight:600;white-space:nowrap}
+.v::before{content:"";display:inline-block;width:6px;height:6px;margin-right:7px;background:currentColor;vertical-align:1.5px}
+.v-ok{color:var(--mint)} .v-mid{color:var(--amber)} .v-no{color:var(--rust)}
+
+/* hanging lists */
+.items{margin-top:16px}
+.items li{list-style:none;padding-left:22px;text-indent:-22px;margin-bottom:9px}
+.items li::before{content:"—";color:var(--sub);padding-right:9px}
+.items li b{font-weight:600}
+
+/* sequence — 순서가 있는 단계. 번호는 여백에 매단다 */
+.seq{margin-top:18px;list-style:none;counter-reset:sq}
+.seq li{counter-increment:sq;position:relative;padding-left:38px;margin-bottom:16px}
+.seq li::before{
+  content:counter(sq);position:absolute;left:0;top:0;
+  font-family:"Space Grotesk",monospace;font-weight:500;font-size:.95rem;
+  color:var(--sub);border-bottom:1px solid var(--line);padding-bottom:1px;
+}
+.seq b{font-weight:600;display:block}
+.seq .when{font-size:.8rem;color:var(--accent);font-weight:600}
+.seq p{margin-top:3px;font-size:.92rem;color:var(--sub)}
+
+footer{margin-top:64px;padding-top:14px;border-top:1px solid var(--line);color:var(--sub);font-size:.79rem}
+footer p{margin-top:8px}
+a{color:var(--accent);text-underline-offset:3px}
+
+@media print{
+  body{padding:0}
+  .strip{overflow:visible;flex-wrap:wrap}
+  section{break-inside:avoid}
+  table,.name,.spec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <div class="mark"></div>
+  <p class="kicker">Diem — Google Play 배포 실행 기록</p>
+  <h1>실제 화면으로 남긴<br><span>첫 출시의 순서</span></h1>
+  <p class="standfirst">1호 앱 Diem을 Google Play에 올리는 전 과정을, 진행하면서 찍은 실제 콘솔 화면과 함께 순서대로 기록합니다. 다음 앱(Penna)은 이 문서를 따라가기만 하면 됩니다. 계정·앱 식별번호와 개인 주소는 가렸습니다.</p>
+  <p class="dateline">2026-08-12 ~ 진행 중 · Diem <span class="num">v1.2.0</span> · 조직 계정(Vravio Inc)</p>
+</header>
+
+<div class="spec">
+  <dl>
+    <div><dt>전체 단계</dt><dd class="num">8</dd></div>
+    <div><dt>완료</dt><dd class="num" style="color:var(--mint)">5</dd></div>
+    <div><dt>실측 캡처</dt><dd class="num">13<span class="unit"> 장</span></dd></div>
+    <div><dt>계정 유형</dt><dd style="font-size:1.02rem;padding-top:6px">조직 (테스트 의무 면제)</dd></div>
+    <div><dt>업로드 파일</dt><dd style="font-size:1.02rem;padding-top:6px">AAB <span class="num">13.1</span> MB</dd></div>
+    <div><dt>심사 예상</dt><dd class="num">3–7<span class="unit"> 일</span></dd></div>
+  </dl>
+</div>
+
+<section>
+  <h2>0. 게시 전 준비 <span class="v v-ok" style="font-size:.85rem">완료</span></h2>
+  <p class="subtle">콘솔에 들어가기 전에 끝내둔 것</p>
+  <ul class="items">
+    <li><b>개발자 계정</b> — 조직 계정 신원·전화번호 인증. 조직 계정은 개인 계정에 부과되는 "테스터 12명×14일" 의무가 없어 내부 테스트 후 바로 프로덕션 신청이 가능합니다</li>
+    <li><b>개인정보처리방침 호스팅</b> — 자리표시자를 실제 값으로 교체해 GitHub Pages에 게시. 심사자가 실제로 열어보므로 URL이 살아 있어야 합니다</li>
+    <li><b>스토어 자산</b> — 문구(영/한 각 3종), 아이콘 512, 피처 그래픽 1024×500, 스크린샷 8장</li>
+    <li><b>서명된 AAB</b> — 릴리스 빌드 + 서명 검증(jar verified)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>1. 앱 만들기 <span class="v v-ok" style="font-size:.85rem">완료</span></h2>
+  <p class="subtle">홈 → 앱 만들기 · 여기서 정한 값은 대부분 되돌릴 수 없다</p>
+  <figure><img src="img/REL-1-create-app-01.png" alt="시작점 — 인증이 끝나면 "첫 번째 앱 만들기"가 활성화된다" loading="lazy"><figcaption>시작점 — 인증이 끝나면 "첫 번째 앱 만들기"가 활성화된다</figcaption></figure>
+  <figure><img src="img/REL-1-create-app-02.png" alt="앱 세부정보 폼 — 이름·패키지·기본 언어·무료 선언. 무료→유료 전환은 영구 불가, 패키지 이름은 생성 후 변경 불가" loading="lazy"><figcaption>앱 세부정보 폼 — 이름·패키지·기본 언어·무료 선언. 무료→유료 전환은 영구 불가, 패키지 이름은 생성 후 변경 불가</figcaption></figure>
+  <div class="note">
+    <b>문서에 없던 실측 발견.</b> 앱 만들기 폼에 <b>패키지 이름 입력란</b>이 있습니다 — 과거에는 첫 번들 업로드 시점에 확정되던 값입니다. 준비해둔 가이드에 이 필드가 없어 실측 후 가이드를 고쳤습니다. 화면이 문서보다 항상 옳습니다.
+  </div>
+  <figure><img src="img/REL-1-create-app-03.png" alt="생성 직후 대시보드 — "앱 설정" 체크리스트가 열린다" loading="lazy"><figcaption>생성 직후 대시보드 — "앱 설정" 체크리스트가 열린다</figcaption></figure>
+  <figure><img src="img/REL-1-create-app-04.png" alt="앱 설정 체크리스트 확대 — 이 목록이 2단계의 지도다" loading="lazy"><figcaption>앱 설정 체크리스트 확대 — 이 목록이 2단계의 지도다</figcaption></figure>
+</section>
+
+<section>
+  <h2>2. 앱 콘텐츠 선언 <span class="v v-ok" style="font-size:.85rem">완료</span></h2>
+  <p class="subtle">정책 및 프로그램 → 앱 콘텐츠 · 심사 제출의 관문, 전부 수동 입력</p>
+  <p class="first">12개 항목을 위에서 아래로. Diem의 답은 대부분 "아니요"지만(무광고·무수집·무로그인), <b>선언은 빌드 실제와 일치해야</b> 합니다 — 광고 없다고 선언하고 광고 SDK가 들어 있으면 반려됩니다.</p>
+  <figure><img src="img/REL-2.1-privacy-url-01.png" alt="개인정보처리방침 — 호스팅해둔 URL 입력" loading="lazy"><figcaption>개인정보처리방침 — 호스팅해둔 URL 입력</figcaption></figure>
+  <figure><img src="img/REL-2.2-app-access-01.png" alt="로그인 세부정보 — "아니요(제한 없음)". 저장 토스트까지 확인" loading="lazy"><figcaption>로그인 세부정보 — "아니요(제한 없음)". 저장 토스트까지 확인</figcaption></figure>
+  <figure><img src="img/REL-2.2-app-access-02.png" alt="저장할 때마다 대시보드 진행률이 올라간다 (2/11)" loading="lazy"><figcaption>저장할 때마다 대시보드 진행률이 올라간다 (2/11)</figcaption></figure>
+  <figure><img src="img/REL-2.3-ads-declaration-01.png" alt="광고 — "아니요". 1차 출시 빌드는 광고 SDK 권한까지 제거된 상태라 선언과 실제가 일치" loading="lazy"><figcaption>광고 — "아니요". 1차 출시 빌드는 광고 SDK 권한까지 제거된 상태라 선언과 실제가 일치</figcaption></figure>
+  <figure><img src="img/REL-2.4-content-rating-01.png" alt="콘텐츠 등급 — IARC 설문 시작" loading="lazy"><figcaption>콘텐츠 등급 — IARC 설문 시작</figcaption></figure>
+  <figure><img src="img/REL-2.4-content-rating-02.png" alt="설문 1단계 — 이메일·카테고리("다른 모든 앱 유형"). 문항은 전부 "아니요" → 전체이용가" loading="lazy"><figcaption>설문 1단계 — 이메일·카테고리("다른 모든 앱 유형"). 문항은 전부 "아니요" → 전체이용가</figcaption></figure>
+  <figure><img src="img/REL-2.5-target-audience-01.png" alt="타겟층 — 잘못 입력된 상태의 기록. 전 연령이 체크돼 있는데, 12세 이하를 포함하면 가족 정책 심사가 통째로 붙는다. "만 18세 이상"만 남기고 해제했다" loading="lazy"><figcaption>타겟층 — 잘못 입력된 상태의 기록. 전 연령이 체크돼 있는데, 12세 이하를 포함하면 가족 정책 심사가 통째로 붙는다. "만 18세 이상"만 남기고 해제했다</figcaption></figure>
+  <div class="note warn">
+    <b>이 단계에서 나온 실수 두 가지 — 다음 앱에서 반복하지 말 것.</b> ① 타겟 연령을 전부 체크(위 캡처). ② 등급 설문 이메일에 개인 주소 입력 — 회사 공개 주소로 통일해야 합니다. 둘 다 제출 전에 잡았습니다.
+  </div>
+</section>
+
+<section>
+  <h2>3. 스토어 등록정보 <span class="v v-ok" style="font-size:.85rem">완료</span></h2>
+  <p class="subtle">사용자 늘리기 → 앱 정보 → 스토어 등록정보</p>
+  <ul class="items">
+    <li><b>영어(기본)</b> — 제목 29/30자 · 짧은 설명 73/80 · 자세한 설명 2,185/4,000. 글자수는 입력 전에 전부 실측해뒀다</li>
+    <li><b>그래픽</b> — 아이콘·피처 그래픽·스크린샷 8장, 파일명 번호 순서대로 업로드</li>
+    <li><b>한국어</b> — 번역 추가로 등록. "AI로 번역 가져오기"는 쓰지 않았다 — 준비한 문구가 검색 키워드를 반영한다</li>
+  </ul>
+</section>
+
+<section>
+  <h2>4. Play 앱 서명 <span class="v v-mid" style="font-size:.85rem">첫 업로드 시 자동</span></h2>
+  <p class="first">첫 AAB 업로드 때 자동 등록됩니다. 이후 앱 서명 키는 Google이 보관하고, 개발자는 업로드 키만 관리합니다. <b>업로드 키를 잃어도 재설정 가능해지는 시점</b>이라, 첫 업로드 전 키 보관이 가장 위험한 구간입니다.</p>
+</section>
+
+<section>
+  <h2>5. 내부 테스트 <span class="v v-mid" style="font-size:.85rem">진행 예정</span></h2>
+  <p class="subtle">테스트 및 출시 → 테스트 → 내부 테스트 · 심사 없이 즉시 배포</p>
+  <figure><img src="img/REL-5.3-internal-release-01.png" alt="대시보드가 내부 테스트를 가장 위에 권한다 — 검토 없이 조기 배포 가능한 유일한 트랙" loading="lazy"><figcaption>대시보드가 내부 테스트를 가장 위에 권한다 — 검토 없이 조기 배포 가능한 유일한 트랙</figcaption></figure>
+  <ul class="items">
+    <li>테스터 이메일 목록 → AAB 업로드 → 릴리스 노트 → 출시</li>
+    <li>참여 링크(옵트인 URL)로 실기기 설치 → 위젯·언어·다크모드 5분 점검</li>
+  </ul>
+</section>
+
+<section>
+  <h2>6. 프로덕션 <span class="v v-mid" style="font-size:.85rem">진행 예정</span></h2>
+  <ul class="items">
+    <li><b>국가 선택</b> — EEA 30국·영국·스위스 제외(광고 도입 대비 GDPR 동의폼 미구현). 최초 1회만 수동, 이후 상속</li>
+    <li><b>동일 AAB 승격</b> — 내부 테스트에 올린 바이너리를 라이브러리에서 선택. 재빌드 금지</li>
+    <li>심사 제출 → 상태 "검토 중"</li>
+  </ul>
+</section>
+
+<section>
+  <h2>7. 심사 <span class="v v-mid" style="font-size:.85rem">대기 예정</span></h2>
+  <ul class="items">
+    <li>신규 앱 통상 3~7일. 대기 중 새 버전 제출 금지</li>
+    <li>통과 후 30분 내: 스토어 검색·설치·스크린샷 표시 확인</li>
+  </ul>
+</section>
+
+<section>
+  <h2>이 기록이 남기는 것</h2>
+  <ul class="items">
+    <li><b>다음 앱의 대본</b> — Penna는 이 순서에서 앱 이름·값만 바꾸면 된다. 광고가 켜진 앱이라 2단계의 광고·데이터 보안 답만 반대가 된다</li>
+    <li><b>자동화의 설계도</b> — 3·5·6단계는 API로 자동화 가능(두 번째 릴리스부터), 1·2·7단계는 영구 수동. 어디에 시간이 드는지 이 기록이 증거다</li>
+    <li><b>실패 분기의 실물</b> — 잘못 입력된 화면도 지우지 않고 남겼다. 정상 경로는 문서로 알 수 있지만 실수는 실물이 있어야 안다</li>
+  </ul>
+</section>
+
+<footer>
+  <p>자매 문서 — <a href="../">앱 생성·배포 자동화 검토 보고</a> · <a href="https://ssallem.github.io/penna-app/">Penna 개발 진행 보고</a></p>
+  <p>캡처의 계정·앱 식별번호와 개인 이메일은 마스킹됨. 테마: Quiet Sheet.</p>
+</footer>
+
+</div>
+</body>
+</html>
