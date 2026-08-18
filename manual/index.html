@@ -160,7 +160,7 @@ a{color:var(--accent);text-underline-offset:3px}
   <p class="kicker">AosAppCreater — 배포 표준 절차서</p>
   <h1>Google Play<br><span>배포 매뉴얼</span></h1>
   <p class="standfirst">앱 중립 절차서. Diem 1회 실측(2026-08-12~08-18)에서 확인된 순서·함정을 표준화했다. 다음 앱(Penna 등)은 이 문서의 [예시] 값만 자기 값으로 바꿔 그대로 따라간다.</p>
-  <p class="dateline">v1.0 · 2026-08-18 · Diem 1회 실측 기반 · 실측이 갱신되면 이 페이지를 먼저 고친다</p>
+  <p class="dateline">v1.1 · 2026-08-18 · Diem 1회 실측 기반 · 실측이 갱신되면 이 페이지를 먼저 고친다</p>
 </header>
 
 <div class="spec">
@@ -169,10 +169,26 @@ a{color:var(--accent);text-underline-offset:3px}
     <div><dt>실측 완료</dt><dd class="num" style="color:var(--mint)">6</dd></div>
     <div><dt>추가 예정</dt><dd class="num" style="color:var(--amber)">2</dd></div>
     <div><dt>함정</dt><dd class="num">8<span class="unit"> 건 (전부 실측)</span></dd></div>
-    <div><dt>참조 캡처</dt><dd class="num">4<span class="unit"> 장</span></dd></div>
+    <div><dt>참조 캡처</dt><dd class="num">16<span class="unit"> 장</span></dd></div>
     <div><dt>실측 기간</dt><dd class="num" style="font-size:1.02rem;padding-top:6px">08-12 ~ 08-18</dd></div>
   </dl>
 </div>
+
+<section>
+  <h2>목차</h2>
+  <ul class="items">
+    <li><a href="#step-0">STEP 0. 사전 준비</a></li>
+    <li><a href="#step-1">STEP 1. 앱 만들기</a></li>
+    <li><a href="#step-2">STEP 2. 앱 콘텐츠 12항목</a></li>
+    <li><a href="#step-3">STEP 3. 스토어 등록정보</a></li>
+    <li><a href="#step-4">STEP 4. 내부 테스트</a></li>
+    <li><a href="#step-5">STEP 5. 비공개(Closed) 테스트</a></li>
+    <li><a href="#step-6">STEP 6. 프로덕션</a></li>
+    <li><a href="#step-7">STEP 7. 심사 후</a></li>
+    <li><a href="#pitfalls">함정 모음 — 전부 실측</a></li>
+    <li><a href="#next-release">다음 릴리스 표준 절차</a></li>
+  </ul>
+</section>
 
 <section>
   <h2>읽는 법</h2>
@@ -184,7 +200,7 @@ a{color:var(--accent);text-underline-offset:3px}
   </ul>
 </section>
 
-<section>
+<section id="step-0">
   <h2>STEP 0. 사전 준비 <span class="v v-ok" style="font-size:.85rem">실측 완료</span></h2>
   <p class="subtle">콘솔에 들어가기 전에 끝낸다 — 하나라도 없으면 중간에 멈춘다</p>
   <ul class="items">
@@ -197,7 +213,7 @@ a{color:var(--accent);text-underline-offset:3px}
   </ul>
 </section>
 
-<section>
+<section id="step-1">
   <h2>STEP 1. 앱 만들기 <span class="v v-ok" style="font-size:.85rem">실측 완료</span></h2>
   <p class="subtle">홈 → 앱 만들기 · 여기서 정한 값은 대부분 되돌릴 수 없다</p>
   <table>
@@ -211,12 +227,14 @@ a{color:var(--accent);text-underline-offset:3px}
       <tr><td>선언 2종</td><td>개발자 프로그램 정책 + 미국 수출법, 둘 다 체크</td><td>체크</td></tr>
     </tbody>
   </table>
+  <figure><img src="../deploy/img/REL-1-create-app-01.png" alt="앱 만들기 폼 — 앱 이름·기본 언어·앱/게임·무료 선택" loading="lazy"><figcaption>앱 만들기 폼 — 앱 이름·기본 언어·앱/게임·무료를 여기서 정한다</figcaption></figure>
   <div class="note warn">
     <b>실측 — 패키지 이름 입력란이 이 폼에 존재한다.</b> 구 문서에는 없던 항목(과거엔 첫 AAB 업로드 시점에 확정). 여기 입력한 값이 빌드의 applicationId와 일치해야 하며 생성 후 변경할 수 없다. 화면이 문서보다 옳다.
   </div>
+  <figure><img src="../deploy/img/REL-1-create-app-02.png" alt="앱 만들기 폼의 패키지 이름 입력란 — 실측 근거" loading="lazy"><figcaption>패키지 이름 입력란 실측 근거 — 입력 후 [사용 가능 여부 확인]을 클릭한다</figcaption></figure>
 </section>
 
-<section>
+<section id="step-2">
   <h2>STEP 2. 앱 콘텐츠 12항목 <span class="v v-ok" style="font-size:.85rem">실측 완료</span></h2>
   <p class="subtle">정책 및 프로그램 → 앱 콘텐츠 · 심사 제출의 관문, 전부 수동 입력</p>
   <p class="first">위에서 아래로 순서대로. <b>선언은 빌드 실제와 일치해야 한다</b> — "광고 없음" 선언인데 병합 매니페스트에 AD_ID 권한이 남아 있으면 업로드가 거부된다(함정 표 참조). 목록에 없는 항목이 새로 보이면 해당 기능을 안 쓰는 한 "해당 없음/아니요"로 답한다.</p>
@@ -237,12 +255,17 @@ a{color:var(--accent);text-underline-offset:3px}
       <tr><td>12 광고 ID</td><td>병합 매니페스트의 AD_ID 권한과 일치해야 함</td><td>아니요 — AD_ID 권한 제거 필수</td><td>예</td></tr>
     </tbody>
   </table>
+  <figure><img src="../deploy/img/REL-2.1-privacy-url-01.png" alt="항목 1 — 개인정보처리방침 URL 입력 화면" loading="lazy"><figcaption>① 개인정보처리방침 — 호스팅해 둔 HTTPS URL을 입력하고 저장</figcaption></figure>
+  <figure><img src="../deploy/img/REL-2.2-app-access-01.png" alt="항목 2 — 앱 액세스 권한, 제한 없음 선택" loading="lazy"><figcaption>② 앱 액세스 권한 — 로그인이 없으면 "모든 기능 제한 없음" 선택</figcaption></figure>
+  <figure><img src="../deploy/img/REL-2.3-ads-declaration-01.png" alt="항목 3 — 광고 선언 화면" loading="lazy"><figcaption>③ 광고 선언 — 광고 SDK 실탑재 여부와 일치하는 쪽을 선택</figcaption></figure>
+  <figure><img src="../deploy/img/REL-2.4-content-rating-01.png" alt="항목 4 — 콘텐츠 등급 IARC 설문 시작 화면" loading="lazy"><figcaption>④ 콘텐츠 등급 — IARC 설문 시작. 이메일은 공개 연락용 회사 주소로</figcaption></figure>
+  <figure><img src="../deploy/img/REL-2.5-target-audience-01.png" alt="항목 5 — 타겟층 연령 선택 화면, 가족 정책 함정 지점" loading="lazy"><figcaption>⑤ 타겟층 — 연령 선택 화면. 12세 이하를 체크하면 가족 정책 심사가 붙는다(함정 6)</figcaption></figure>
   <div class="note">
     <b>[광고 없음] 빌드의 전제.</b> 광고 SDK가 의존성에 남아 있으면 매니페스트 병합으로 AD_ID 계열 권한 4종이 자동 삽입된다. <b>tools:node="remove"</b>로 제거하고, 재빌드 때마다 병합 매니페스트에서 AD_ID·ADSERVICES <b>0건</b>을 확인한다(실측 검증 절차).
   </div>
 </section>
 
-<section>
+<section id="step-3">
   <h2>STEP 3. 스토어 등록정보 <span class="v v-ok" style="font-size:.85rem">실측 완료</span></h2>
   <p class="subtle">사용자 늘리기(성장) → 스토어 현황 → 기본 스토어 등록정보</p>
   <table>
@@ -258,9 +281,12 @@ a{color:var(--accent);text-underline-offset:3px}
     <li><b>그래픽</b> — 아이콘·피처 그래픽·스크린샷을 파일명 번호 순서대로 업로드</li>
     <li><b>언어 = en 기본 + ko 번역 2개만 [예시: Diem].</b> 리스팅 언어는 자기 앱 전략대로 정한다. "AI로 번역 가져오기"는 쓰지 않는다 — 준비한 문구가 검색 키워드를 반영한다. 나머지 언어는 유입이 생기면 그때 추가(재심사 불필요)</li>
   </ul>
+  <div class="note">
+    <b>[추가 예정]</b> 캡처 — 이 단계 촬영분 없음. 다음 앱 배포 시 촬영해 추가한다.
+  </div>
 </section>
 
-<section>
+<section id="step-4">
   <h2>STEP 4. 내부 테스트 <span class="v v-ok" style="font-size:.85rem">실측 완료</span></h2>
   <p class="subtle">테스트 및 출시 → 테스트 → 내부 테스트 · 심사 없이 즉시 게시되는 유일한 트랙</p>
   <ol class="seq">
@@ -275,12 +301,16 @@ a{color:var(--accent);text-underline-offset:3px}
     <li><b>옵트인 링크로 실기기 설치</b>
       <p>테스터 탭의 참여 링크를 테스터에게 전달 → "테스터 되기" 수락 후 Play 스토어에서 설치(사이드로드 아님) → 핵심 기능 5분 점검</p></li>
   </ol>
+  <figure><img src="../deploy/img/REL-5.2-internal-testers-02.png" alt="① 테스터 이메일 목록 만들기 화면" loading="lazy"><figcaption>① 테스터 이메일 목록 만들기 — 목록 이름과 Google 계정 이메일을 넣고 저장</figcaption></figure>
+  <figure><img src="../deploy/img/REL-5.3-internal-release-02.png" alt="② AAB 업로드와 출시 노트 입력 화면" loading="lazy"><figcaption>② AAB 업로드 + 출시 노트 입력 — 드래그 업로드는 이 1단계에서만 동작(함정 5)</figcaption></figure>
+  <figure><img src="../deploy/img/REL-5.3-internal-release-03.png" alt="③ 미리보기 및 확인 — 경고 확인 지점" loading="lazy"><figcaption>③ 미리보기 및 확인 — 경고를 여기서 확인하고 넘어간다</figcaption></figure>
+  <figure><img src="../deploy/img/REL-5.3-internal-release-04.png" alt="④ 출시 완료 — 내부 테스트 트랙 활성 상태" loading="lazy"><figcaption>④ 출시 완료 — 내부 테스트 트랙이 활성 상태로 표시된다</figcaption></figure>
   <div class="note warn">
     <b>실측 — 미검토 상태의 스토어 표시는 이렇게 보이는 게 정상.</b> 앱명이 패키지명 + "(unreviewed)"로 표기되고 아이콘이 회색이며 <b>17+ 배지</b>(미등급 = 고연령 취급)가 붙는다 — 첫 심사 통과 전 정상 (08-13~17 실기기 관측). 심사를 통과하면 정상 표시로 바뀐다 — 이 단계에서 고칠 것이 아니다.
   </div>
 </section>
 
-<section>
+<section id="step-5">
   <h2>STEP 5. 비공개(Closed) 테스트 <span class="v v-ok" style="font-size:.85rem">실측 완료 · 08-18</span></h2>
   <p class="subtle">테스트 및 출시 → 테스트 → 비공개 테스트 · 2026-08-18 실측 5단계</p>
   <ol class="seq">
@@ -301,7 +331,7 @@ a{color:var(--accent);text-underline-offset:3px}
   <figure><img src="../deploy/img/REL-5.5-closed-test-14.png" alt="⑤ 게시 개요 — 검토 중인 변경사항 표시, 제출 완료" loading="lazy"><figcaption>⑤ 게시 개요 — "검토 중인 변경사항" 표시가 제출 완료의 증거</figcaption></figure>
 </section>
 
-<section>
+<section id="step-6">
   <h2>STEP 6. 프로덕션 <span class="v v-mid" style="font-size:.85rem">추가 예정 — 승인 후 실측 기입</span></h2>
   <p class="subtle">비공개 테스트 심사 통과 후 진행 · 아래는 뼈대, 실측하면서 채운다</p>
   <ul class="items">
@@ -311,7 +341,7 @@ a{color:var(--accent);text-underline-offset:3px}
   </ul>
 </section>
 
-<section>
+<section id="step-7">
   <h2>STEP 7. 심사 후 <span class="v v-mid" style="font-size:.85rem">추가 예정</span></h2>
   <p class="subtle">뼈대 — 첫 통과 후 실측 기입</p>
   <ul class="items">
@@ -320,7 +350,7 @@ a{color:var(--accent);text-underline-offset:3px}
   </ul>
 </section>
 
-<section>
+<section id="pitfalls">
   <h2>함정 모음 — 전부 실측</h2>
   <p class="subtle">Diem 1회 배포에서 실제로 겪었거나 직전에 잡은 것들</p>
   <table>
@@ -336,9 +366,10 @@ a{color:var(--accent);text-underline-offset:3px}
       <tr><td class="num">8</td><td><b>공개 git 리포에 개인 이메일로 커밋</b> — 전역 git 설정이 개인 계정이면 공개 리포에 그대로 박힌다</td><td>커밋 전 리포별 identity 확인: <span class="num">git log -1 --format="%an %ae"</span>. 리포 로컬 config로 회사 계정 고정</td></tr>
     </tbody>
   </table>
+  <figure><img src="../deploy/img/REL-5.4-publishing-overview-01.png" alt="함정 1 — 게시 개요의 검토를 위해 제출 버튼" loading="lazy"><figcaption>함정 1 — 게시 개요의 "검토를 위해 제출" 버튼. 여기까지 눌러야 심사가 시작된다</figcaption></figure>
 </section>
 
-<section>
+<section id="next-release">
   <h2>다음 릴리스 표준 절차</h2>
   <p class="subtle">한 번 승인된 앱의 업데이트 — 첫 출시보다 훨씬 짧다</p>
   <ol class="seq">
@@ -359,7 +390,7 @@ a{color:var(--accent);text-underline-offset:3px}
 </section>
 
 <footer>
-  <p><b>이력</b> — v1.0 (2026-08-18): 초판. STEP 0~5 실측 완료분 + 함정 8건 수록, STEP 6·7·GPP 자동화는 뼈대만. <b>실측이 갱신되면 이 페이지를 먼저 고친다.</b></p>
+  <p><b>이력</b> — v1.1 (2026-08-18): STEP 1·2·4 캡처 16장 임베드 + 목차 추가 · v1.0 (2026-08-18): 초판. STEP 0~5 실측 완료분 + 함정 8건 수록, STEP 6·7·GPP 자동화는 뼈대만. <b>실측이 갱신되면 이 페이지를 먼저 고친다.</b></p>
   <p>원자료 — <a href="../deploy/">Diem, Google Play 배포 실행 기록</a> (실측 캡처) · <a href="../">앱 생성·배포 자동화 검토 보고</a></p>
   <p>계정·앱 식별번호와 개인 연락처는 본문·캡처 모두 미포함. 테마: Quiet Sheet.</p>
 </footer>
