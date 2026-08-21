@@ -160,14 +160,14 @@ a{color:var(--accent);text-underline-offset:3px}
   <p class="kicker">Diem — Google Play 배포 실행 기록</p>
   <h1>실제 화면으로 남긴<br><span>첫 출시의 순서</span></h1>
   <p class="standfirst">1호 앱 Diem을 Google Play에 올리는 전 과정을, 진행하면서 찍은 실제 콘솔 화면과 함께 순서대로 기록합니다. 다음 앱(Penna)은 이 문서를 따라가기만 하면 됩니다. 계정·앱 식별번호와 개인 주소는 가렸습니다.</p>
-  <p class="dateline">2026-08-12 ~ 진행 중 · <b>현재: 비공개 테스트 승인·게시됨(08-18) · 프로덕션 준비 중</b> · Diem <span class="num">v1.2.0</span> · 조직 계정(Vravio Inc)</p>
+  <p class="dateline">2026-08-12 ~ 진행 중 · <b>현재: 프로덕션 검토 중(08-21 14:23 제출) · 비공개 테스트 게시됨(08-18)</b> · Diem <span class="num">v1.2.1</span>(검토 중) · 조직 계정(Vravio Inc)</p>
 </header>
 
 <div class="spec">
   <dl>
     <div><dt>전체 단계</dt><dd class="num">9</dd></div>
     <div><dt>완료</dt><dd class="num" style="color:var(--mint)">7</dd></div>
-    <div><dt>실측 캡처</dt><dd class="num">17<span class="unit"> 장</span></dd></div>
+    <div><dt>실측 캡처</dt><dd class="num">23<span class="unit"> 장</span></dd></div>
     <div><dt>계정 유형</dt><dd style="font-size:1.02rem;padding-top:6px">조직 (테스트 의무 면제)</dd></div>
     <div><dt>업로드 파일</dt><dd style="font-size:1.02rem;padding-top:6px">AAB <span class="num">13.1</span> MB</dd></div>
     <div><dt>Alpha 심사 실측</dt><dd class="num">13<span class="unit"> 분</span></dd></div>
@@ -240,7 +240,7 @@ a{color:var(--accent);text-underline-offset:3px}
 
 <section>
   <h2>5.5 비공개 테스트 (Closed/Alpha) <span class="v v-ok" style="font-size:.85rem">승인·게시됨</span></h2>
-  <p class="subtle">테스트 및 출시 → 테스트 → 비공개 테스트 · 2026-08-18 제출 → 같은 날 승인·출시 · 캡처 5장 실측</p>
+  <p class="subtle">테스트 및 출시 → 테스트 → 비공개 테스트 · 2026-08-18 제출 → 같은 날 승인·출시 · 캡처 6장 실측</p>
   <div class="note bad">
     <b>정정 — 08-13 새벽 "프로덕션 제출 완료" 기록은 오기.</b> 08-18 콘솔 실측 결과 프로덕션 트랙 비활성, 검토 대기·미게시 변경 <b>0건</b> — 제출이 반영되지 않았습니다. 추정 원인: 게시 개요(Publishing overview)의 <b>"변경사항 검토 제출" 최종 클릭 누락</b>. 재발 방지 확인법: 제출 후 게시 개요에 "검토 중인 변경사항"이 표시되는지 반드시 확인.
   </div>
@@ -254,7 +254,7 @@ a{color:var(--accent);text-underline-offset:3px}
     <li><b>미리보기 — 경고 1건</b>
       <p>네이티브 디버그 기호 미업로드. 제출 비차단이며 Kotlin 앱은 통상 무시 가능</p></li>
     <li><b>게시 개요 → 변경사항 3건 검토 제출</b>
-      <p>버전 출시·트랙 재시작·테스터 설정 3건 제출 → 상태 "검토 중인 변경사항". 사전 검사 최대 ~14분 → 심사 큐(통상 7일 이내). 실측(콘솔 표시 시각): <span class="num">09:31</span> 제출 → <span class="num">09:44</span> 승인(<span class="num">13</span>분) → <span class="num">21:47</span> 출시됨 — 공식 안내보다 훨씬 짧았으나 1회 실측이라 일반화 금지</p></li>
+      <p>버전 출시·트랙 재시작·테스터 설정 3건 제출 → 상태 "검토 중인 변경사항". 사전 검사 최대 ~14분 → 심사 큐(통상 7일 이내). 실측(콘솔 표시 시각): <span class="num">09:31</span> 제출 → <span class="num">09:44</span> 승인(<span class="num">13</span>분) → <span class="num">21:33</span> "변경사항 게시" 클릭(관리형 게시) → <span class="num">21:47</span> 출시됨 — 심사는 공식 안내보다 훨씬 짧았으나 1회 실측이라 일반화 금지</p></li>
   </ol>
   <figure><img src="img/REL-5.5-closed-test-04.png" alt="① 테스터 목록 화면 — 기존 목록 사전테스트(5명) 체크 직전" loading="lazy"><figcaption>① 테스터 목록 화면 — 기존 목록 '사전테스트'(5명) 체크 직전</figcaption></figure>
   <figure><img src="img/REL-5.5-closed-test-06.png" alt="② 번들 3(1.2.0)이 추가된 버전 세부정보 — 라이브러리에서 추가 대화상자는 미촬영, 결과 화면으로 대체" loading="lazy"><figcaption>② 번들 3(1.2.0)이 추가된 버전 세부정보 — "라이브러리에서 추가" 대화상자 자체는 미촬영, 결과 화면으로 대체</figcaption></figure>
@@ -265,26 +265,59 @@ a{color:var(--accent);text-underline-offset:3px}
     <b>조직 계정 면제.</b> "테스터 12명 이상 × 연속 14일" 요건은 2023-11-13 이후 생성된 <b>개인 계정 전용</b> — Vravio Inc는 조직 계정이라 면제. 심사 통과 즉시 프로덕션 승급 가능.
   </div>
   <div class="note">
-    <b>승인 직후 콘솔에 "다음 출시 버전을 위한 발견 항목" 2건.</b> 카테고리 사용자 환경, 비차단. ① Edge-to-edge 인셋 처리(targetSdk 35+) ② Android 15 지원 중단 API <span class="num">setStatusBarColor</span>/<span class="num">setNavigationBarColor</span> 호출. 빌드 경고 "네이티브 디버그 기호 미포함"과 함께 다음 릴리스(versionCode <span class="num">4</span>)에서 수정 예정. <b>관리형 게시가 켜져 있어 승인 ≠ 게시</b> — 게시 개요 › "관리형 게시가 사용 설정됨" › 변경사항 게시까지 확인. 승인 후 설치 <span class="num">0</span>명 — 테스터에게 옵트인 링크 배포가 남았다.
+    <b>승인 직후 콘솔에 "다음 출시 버전을 위한 발견 항목" 2건.</b> 카테고리 사용자 환경, 비차단. ① Edge-to-edge 인셋 처리(targetSdk 35+) ② Android 15 지원 중단 API <span class="num">setStatusBarColor</span>/<span class="num">setNavigationBarColor</span> 호출. 빌드 경고 "네이티브 디버그 기호 미포함"과 함께 다음 릴리스(versionCode <span class="num">4</span>)에서 수정 예정. <b>관리형 게시가 켜져 있어 승인 ≠ 게시</b> — 실측: <span class="num">09:44</span> 승인 뒤에도 게시되지 않다가, <span class="num">21:33</span> 게시 개요 › "관리형 게시가 사용 설정됨" › <b>"변경사항 3개 게시"를 수동 클릭</b>하고 나서야 <span class="num">21:47</span> 출시됨으로 바뀌었다(아래 캡처). 승인 후 설치 <span class="num">0</span>명 — 테스터에게 옵트인 링크 배포가 남았다.
   </div>
-  <p>다음 단계 — 프로덕션 승급(STEP 0 재확인 후): 국가/지역 선택(아래 6단계), 동일 번들 3을 라이브러리에서 추가, <b>게시 개요 제출까지 완료 확인</b>.</p>
+  <figure><img src="img/REL-5.5-managed-publish-01.png" alt="⑥ 관리형 게시 — 승인 후에도 게시 대기 상태, 변경사항 3개 게시 버튼을 직접 눌러야 출시된다" loading="lazy"><figcaption>⑥ 관리형 게시 — 승인 후에도 게시 대기 상태. "변경사항 3개 게시"를 직접 눌러야 출시된다(21:33 클릭 → 21:47 출시됨)</figcaption></figure>
+  <p>이후 — 발견 항목을 반영한 vc4(1.2.1)를 빌드해 세컨드 폰에서 스모크 테스트한 뒤, 비공개 테스트 재업로드는 건너뛰고 <b>프로덕션에 직접 제출</b>했다(아래 6단계). 계획했던 "동일 번들 3 승격"은 vc4 제출로 대체됐다.</p>
 </section>
 
 <section>
-  <h2>6. 프로덕션 <span class="v v-mid" style="font-size:.85rem">진행 예정</span></h2>
-  <p class="subtle">비공개 테스트 승인 완료 — STEP 0 재확인 후 착수</p>
-  <ul class="items">
-    <li><b>국가 선택</b> — EEA 30국·영국·스위스 제외(광고 도입 대비 GDPR 동의폼 미구현). 최초 1회만 수동, 이후 상속</li>
-    <li><b>동일 AAB 승격</b> — 내부 테스트에 올린 바이너리를 라이브러리에서 선택. 재빌드 금지</li>
-    <li>심사 제출 → 상태 "검토 중"</li>
-  </ul>
+  <h2>6. 프로덕션 <span class="v v-mid" style="font-size:.85rem">검토 중(08-21 제출)</span></h2>
+  <p class="subtle">테스트 및 출시 → 프로덕션 · 2026-08-21 <span class="num">14:23</span> 검토 제출 · 캡처 5장 실측</p>
+  <p class="first">vc4(1.2.1) AAB를 세컨드 폰에 설치해 스모크 테스트를 마친 뒤, 비공개 테스트 재업로드는 건너뛰고 프로덕션에 바로 제출했습니다. 계획(번들 3 승격)과 달리 <b>새 번들 4를 업로드</b>한 것이라 프로덕션이 비공개 테스트보다 앞선 버전이 됩니다. <b>승인·게시는 아직 아닙니다.</b></p>
+  <ol class="seq">
+    <li><b>국가/지역 — 머리글 전체 선택</b>
+      <p>프로덕션 트랙은 국가 <span class="num">0</span>개에서 시작한다(트랙별 독립). 목록 머리글 체크박스로 <span class="num">176</span>개 + "기타 국가"를 일괄 선택 → 저장 › "게시 개요로 이동?" 모달은 "나중에"로 닫고 계속 — "다른 트랙에 영향을 미침" 표시는 게시 개요의 변경 항목에서 확인</p></li>
+    <li><b>새 버전 만들기</b>
+      <p>빈 버전 화면. 공개 트랙이라 업로드 화면에 앱 서명 키 ⓘ가 붙는다(아래 함정)</p></li>
+    <li><b>AAB 업로드 — App Bundle 4(1.2.1)</b>
+      <p>라이브러리 승격이 아닌 새 파일 업로드. 타겟 SDK <span class="num">36</span> · 신규 설치 <span class="num">7.48</span>MB</p></li>
+    <li><b>출시 노트 "이전 버전에서 복사"</b>
+      <p>en+ko 2개 언어 — 비공개 테스트 때와 같은 절차</p></li>
+    <li><b>미리보기 — 경고 1건(무시)</b>
+      <p>네이티브 디버그 기호 미업로드. .so 사전 strip으로 해소 불가·비차단 → 저장 → "게시 개요로 이동?"</p></li>
+    <li><b>게시 개요 → 변경사항 3건 검토 제출</b>
+      <p>모달 "검토는 일반적으로 7일 이내" → <b>제출 ID <span class="num">3</span> · <span class="num">14:23</span> · 프로덕션 · 검토 중</b>(빠른 검사 최대 <span class="num">14</span>분). 첫 프로덕션은 단계적 출시 비율 UI가 없어 전체 출시 <span class="num">100</span>%</p></li>
+  </ol>
+  <figure><img src="img/REL-6.1-countries-select-all-04.png" alt="① 국가/지역 탭 — 머리글 체크박스로 176개 + 기타 국가 전체 선택" loading="lazy"><figcaption>① 국가/지역 탭 — 머리글 체크박스로 176개 + "기타 국가" 전체 선택. 프로덕션은 0개에서 시작한다</figcaption></figure>
+  <figure><img src="img/REL-6.2-bundle-uploaded-03.png" alt="② App Bundle 4(1.2.1) 업로드 완료 — 타겟 SDK 36, 신규 설치 7.48MB" loading="lazy"><figcaption>② App Bundle 4(1.2.1) 업로드 완료 — 타겟 SDK 36 · 신규 설치 7.48MB</figcaption></figure>
+  <figure><img src="img/REL-6.3-preview-native-symbols-warning-01.png" alt="③ 미리보기 경고 1건 — 네이티브 디버그 기호, 비공개 테스트 때와 같은 비차단 경고" loading="lazy"><figcaption>③ 미리보기 경고 1건 — 네이티브 디버그 기호. 비공개 테스트 때와 같은 비차단 경고</figcaption></figure>
+  <figure><img src="img/REL-6.4-overview-3-changes-unsubmitted-01.png" alt="④ 게시 개요 — 제출 전 변경사항 3건이 미제출로 쌓여 있다. 여기서 멈추면 08-13처럼 제출이 안 된다" loading="lazy"><figcaption>④ 게시 개요 — 제출 전 변경사항 3건이 미제출 상태로 쌓여 있다. 여기서 멈추면 08-13처럼 제출이 안 된다</figcaption></figure>
+  <figure><img src="img/REL-6.4-submission-activity-in-review-04.png" alt="⑤ 제출 활동 — ID 3 · 08-21 14:23 · 프로덕션 · 검토 중" loading="lazy"><figcaption>⑤ 제출 활동 — ID 3 · 08-21 14:23 · 프로덕션 · 검토 중</figcaption></figure>
+  <div class="note warn">
+    <b>국가 선택이 계획과 다르다.</b> 계획(6.1)은 EEA 30국·영국·스위스를 제외하는 것이었으나, 실측은 머리글 전체 선택(<span class="num">176</span>개 + 기타 국가)으로 저장됐다. 광고 없는 1차 빌드라 당장의 동의폼 문제는 없지만, <b>유지할지 수정할지는 판단이 필요</b>하다 — 국가/지역 탭에서 검토 중에도 언제든 조정할 수 있다. 게시 개요의 국가/지역 변경 항목에 "다른 트랙에 영향을 미침" 배지가 붙은 점도 함께 기록해 둔다.
+  </div>
+  <div class="note">
+    <b>이번에 새로 확인된 함정 두 가지.</b> ① <b>앱 서명 키 선택은 공개 트랙 게시 후 고정</b>된다 — 업로드 화면 ⓘ가 비가역이라고 명시한다. 프로덕션이 첫 공개 트랙이므로 지금이 마지막 선택 지점. ② <b>첫 프로덕션에는 단계적 출시 비율 UI가 없다</b> — 전체 출시 100%로만 나간다. 일부 사용자에게 먼저 풀어보는 건 두 번째 릴리스부터 가능.
+  </div>
+  <table>
+    <caption>제출 활동 — 콘솔 실측 (08-21)</caption>
+    <thead><tr><th>ID</th><th>제출</th><th>트랙 · 내용</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="num">08-13 09:06</td><td>Alpha + 등록정보 + 앱 콘텐츠 + 스토어 설정</td><td><span class="v v-ok">출시됨</span></td></tr>
+      <tr><td class="num">2</td><td class="num">08-18 09:31</td><td>Alpha</td><td><span class="v v-ok">출시됨</span></td></tr>
+      <tr><td class="num">3</td><td class="num">08-21 14:23</td><td>프로덕션</td><td><span class="v v-mid">검토 중</span></td></tr>
+    </tbody>
+  </table>
 </section>
 
 <section>
-  <h2>7. 심사 <span class="v v-mid" style="font-size:.85rem">대기 예정</span></h2>
+  <h2>7. 심사 <span class="v v-mid" style="font-size:.85rem">대기 중</span></h2>
+  <p class="subtle">08-21 <span class="num">14:23</span> 제출 · 빠른 검사 후 검토 대기</p>
   <ul class="items">
-    <li>신규 앱 통상 3~7일. 대기 중 새 버전 제출 금지</li>
-    <li>통과 후 30분 내: 스토어 검색·설치·스크린샷 표시 확인</li>
+    <li><b>현재</b> — 제출 ID 3이 빠른 검사(최대 14분)를 거쳐 심사 큐에 있다. 공식 안내 "일반적으로 7일 이내". 비공개 테스트는 13분 만에 승인됐지만 1회 실측이라 프로덕션에 일반화하지 않는다. <b>대기 중 새 버전 제출 금지</b></li>
+    <li><b>승인 시</b> — 관리형 게시가 켜져 있어 승인 ≠ 게시. 게시 개요에서 <b>"변경사항 게시" 클릭이 필요</b>하다(5.5에서 실측한 것과 같은 수동 단계). 승인·게시 시각은 그때 실측해 기입</li>
+    <li><b>게시 후 30분 내</b> — 스토어 검색·설치·스크린샷 표시 확인</li>
   </ul>
 </section>
 
