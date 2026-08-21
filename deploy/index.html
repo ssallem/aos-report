@@ -294,9 +294,8 @@ a{color:var(--accent);text-underline-offset:3px}
   <figure><img src="img/REL-6.3-preview-native-symbols-warning-01.png" alt="③ 미리보기 경고 1건 — 네이티브 디버그 기호, 비공개 테스트 때와 같은 비차단 경고" loading="lazy"><figcaption>③ 미리보기 경고 1건 — 네이티브 디버그 기호. 비공개 테스트 때와 같은 비차단 경고</figcaption></figure>
   <figure><img src="img/REL-6.4-overview-3-changes-unsubmitted-01.png" alt="④ 게시 개요 — 제출 전 변경사항 3건이 미제출로 쌓여 있다. 여기서 멈추면 08-13처럼 제출이 안 된다" loading="lazy"><figcaption>④ 게시 개요 — 제출 전 변경사항 3건이 미제출 상태로 쌓여 있다. 여기서 멈추면 08-13처럼 제출이 안 된다</figcaption></figure>
   <figure><img src="img/REL-6.4-submission-activity-in-review-04.png" alt="⑤ 제출 활동 — ID 3 · 08-21 14:23 · 프로덕션 · 검토 중" loading="lazy"><figcaption>⑤ 제출 활동 — ID 3 · 08-21 14:23 · 프로덕션 · 검토 중</figcaption></figure>
-  <div class="note warn">
-    <b>국가 선택이 계획과 다르다.</b> 계획(6.1)은 EEA 30국·영국·스위스를 제외하는 것이었으나, 실측은 머리글 전체 선택(<span class="num">176</span>개 + 기타 국가)으로 저장됐다. 광고 없는 1차 빌드라 당장의 동의폼 문제는 없지만, <b>유지할지 수정할지는 판단이 필요</b>하다 — 국가/지역 탭에서 검토 중에도 언제든 조정할 수 있다. 게시 개요의 국가/지역 변경 항목에 "다른 트랙에 영향을 미침" 배지가 붙은 점도 함께 기록해 둔다.
-  </div>
+  <div class="note">
+    <b>국가 선택 — 전 세계 배포로 확정(08-21).</b> 계획(6.1)의 EEA 30국·영국·스위스 제외는 광고(AdMob) 도입을 전제로 한 UMP 동의·GDPR 대비였는데, 1차 빌드는 광고 없음·데이터 수집 0건이라 사유가 소멸했다. 남은 요건은 DSA 판매자 상태 선언(조직 계정 연락처 공개)뿐 — 실측은 머리글 전체 선택(<span class="num">176</span>개 + 기타 국가)으로 저장됐고 그대로 유지한다. 단 v1.3.0에서 광고를 켜면 UMP 구현 전까지 EEA·영국·스위스 제외가 다시 필요하다. 게시 개요의 국가/지역 변경 항목에 "다른 트랙에 영향을 미침" 배지가 붙은 점도 기록해 둔다.</div>
   <div class="note">
     <b>이번에 새로 확인된 함정 두 가지.</b> ① <b>앱 서명 키 선택은 공개 트랙 게시 후 고정</b>된다 — 업로드 화면 ⓘ가 비가역이라고 명시한다. 프로덕션이 첫 공개 트랙이므로 지금이 마지막 선택 지점. ② <b>첫 프로덕션에는 단계적 출시 비율 UI가 없다</b> — 전체 출시 100%로만 나간다. 일부 사용자에게 먼저 풀어보는 건 두 번째 릴리스부터 가능.
   </div>
