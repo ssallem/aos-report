@@ -160,17 +160,17 @@ a{color:var(--accent);text-underline-offset:3px}
   <p class="kicker">Diem — Google Play 배포 실행 기록</p>
   <h1>실제 화면으로 남긴<br><span>첫 출시의 순서</span></h1>
   <p class="standfirst">1호 앱 Diem을 Google Play에 올리는 전 과정을, 진행하면서 찍은 실제 콘솔 화면과 함께 순서대로 기록합니다. 다음 앱(Penna)은 이 문서를 따라가기만 하면 됩니다. 계정·앱 식별번호와 개인 주소는 가렸습니다.</p>
-  <p class="dateline">2026-08-12 ~ 진행 중 · <b>현재: 비공개 테스트 검토 중</b> · Diem <span class="num">v1.2.0</span> · 조직 계정(Vravio Inc)</p>
+  <p class="dateline">2026-08-12 ~ 진행 중 · <b>현재: 비공개 테스트 승인·게시됨(08-18) · 프로덕션 준비 중</b> · Diem <span class="num">v1.2.0</span> · 조직 계정(Vravio Inc)</p>
 </header>
 
 <div class="spec">
   <dl>
     <div><dt>전체 단계</dt><dd class="num">9</dd></div>
-    <div><dt>완료</dt><dd class="num" style="color:var(--mint)">6</dd></div>
+    <div><dt>완료</dt><dd class="num" style="color:var(--mint)">7</dd></div>
     <div><dt>실측 캡처</dt><dd class="num">17<span class="unit"> 장</span></dd></div>
     <div><dt>계정 유형</dt><dd style="font-size:1.02rem;padding-top:6px">조직 (테스트 의무 면제)</dd></div>
     <div><dt>업로드 파일</dt><dd style="font-size:1.02rem;padding-top:6px">AAB <span class="num">13.1</span> MB</dd></div>
-    <div><dt>심사 예상</dt><dd class="num">3–7<span class="unit"> 일</span></dd></div>
+    <div><dt>Alpha 심사 실측</dt><dd class="num">13<span class="unit"> 분</span></dd></div>
   </dl>
 </div>
 
@@ -188,12 +188,12 @@ a{color:var(--accent);text-underline-offset:3px}
 <section>
   <h2>1. 앱 만들기 <span class="v v-ok" style="font-size:.85rem">완료</span></h2>
   <p class="subtle">홈 → 앱 만들기 · 여기서 정한 값은 대부분 되돌릴 수 없다</p>
-  <figure><img src="img/REL-1-create-app-01.png" alt="시작점 — 인증이 끝나면 "첫 번째 앱 만들기"가 활성화된다" loading="lazy"><figcaption>시작점 — 인증이 끝나면 "첫 번째 앱 만들기"가 활성화된다</figcaption></figure>
+  <figure><img src="img/REL-1-create-app-01.png" alt="시작점 — 인증이 끝나면 '첫 번째 앱 만들기'가 활성화된다" loading="lazy"><figcaption>시작점 — 인증이 끝나면 "첫 번째 앱 만들기"가 활성화된다</figcaption></figure>
   <figure><img src="img/REL-1-create-app-02.png" alt="앱 세부정보 폼 — 이름·패키지·기본 언어·무료 선언. 무료→유료 전환은 영구 불가, 패키지 이름은 생성 후 변경 불가" loading="lazy"><figcaption>앱 세부정보 폼 — 이름·패키지·기본 언어·무료 선언. 무료→유료 전환은 영구 불가, 패키지 이름은 생성 후 변경 불가</figcaption></figure>
   <div class="note">
     <b>문서에 없던 실측 발견.</b> 앱 만들기 폼에 <b>패키지 이름 입력란</b>이 있습니다 — 과거에는 첫 번들 업로드 시점에 확정되던 값입니다. 준비해둔 가이드에 이 필드가 없어 실측 후 가이드를 고쳤습니다. 화면이 문서보다 항상 옳습니다.
   </div>
-  <figure><img src="img/REL-1-create-app-03.png" alt="생성 직후 대시보드 — "앱 설정" 체크리스트가 열린다" loading="lazy"><figcaption>생성 직후 대시보드 — "앱 설정" 체크리스트가 열린다</figcaption></figure>
+  <figure><img src="img/REL-1-create-app-03.png" alt="생성 직후 대시보드 — '앱 설정' 체크리스트가 열린다" loading="lazy"><figcaption>생성 직후 대시보드 — "앱 설정" 체크리스트가 열린다</figcaption></figure>
   <figure><img src="img/REL-1-create-app-04.png" alt="앱 설정 체크리스트 확대 — 이 목록이 2단계의 지도다" loading="lazy"><figcaption>앱 설정 체크리스트 확대 — 이 목록이 2단계의 지도다</figcaption></figure>
 </section>
 
@@ -202,12 +202,12 @@ a{color:var(--accent);text-underline-offset:3px}
   <p class="subtle">정책 및 프로그램 → 앱 콘텐츠 · 심사 제출의 관문, 전부 수동 입력</p>
   <p class="first">12개 항목을 위에서 아래로. Diem의 답은 대부분 "아니요"지만(무광고·무수집·무로그인), <b>선언은 빌드 실제와 일치해야</b> 합니다 — 광고 없다고 선언하고 광고 SDK가 들어 있으면 반려됩니다.</p>
   <figure><img src="img/REL-2.1-privacy-url-01.png" alt="개인정보처리방침 — 호스팅해둔 URL 입력" loading="lazy"><figcaption>개인정보처리방침 — 호스팅해둔 URL 입력</figcaption></figure>
-  <figure><img src="img/REL-2.2-app-access-01.png" alt="로그인 세부정보 — "아니요(제한 없음)". 저장 토스트까지 확인" loading="lazy"><figcaption>로그인 세부정보 — "아니요(제한 없음)". 저장 토스트까지 확인</figcaption></figure>
+  <figure><img src="img/REL-2.2-app-access-01.png" alt="로그인 세부정보 — '아니요(제한 없음)'. 저장 토스트까지 확인" loading="lazy"><figcaption>로그인 세부정보 — "아니요(제한 없음)". 저장 토스트까지 확인</figcaption></figure>
   <figure><img src="img/REL-2.2-app-access-02.png" alt="저장할 때마다 대시보드 진행률이 올라간다 (2/11)" loading="lazy"><figcaption>저장할 때마다 대시보드 진행률이 올라간다 (2/11)</figcaption></figure>
-  <figure><img src="img/REL-2.3-ads-declaration-01.png" alt="광고 — "아니요". 1차 출시 빌드는 광고 SDK 권한까지 제거된 상태라 선언과 실제가 일치" loading="lazy"><figcaption>광고 — "아니요". 1차 출시 빌드는 광고 SDK 권한까지 제거된 상태라 선언과 실제가 일치</figcaption></figure>
+  <figure><img src="img/REL-2.3-ads-declaration-01.png" alt="광고 — '아니요'. 1차 출시 빌드는 광고 SDK 권한까지 제거된 상태라 선언과 실제가 일치" loading="lazy"><figcaption>광고 — "아니요". 1차 출시 빌드는 광고 SDK 권한까지 제거된 상태라 선언과 실제가 일치</figcaption></figure>
   <figure><img src="img/REL-2.4-content-rating-01.png" alt="콘텐츠 등급 — IARC 설문 시작" loading="lazy"><figcaption>콘텐츠 등급 — IARC 설문 시작</figcaption></figure>
-  <figure><img src="img/REL-2.4-content-rating-02.png" alt="설문 1단계 — 이메일·카테고리("다른 모든 앱 유형"). 문항은 전부 "아니요" → 전체이용가" loading="lazy"><figcaption>설문 1단계 — 이메일·카테고리("다른 모든 앱 유형"). 문항은 전부 "아니요" → 전체이용가</figcaption></figure>
-  <figure><img src="img/REL-2.5-target-audience-01.png" alt="타겟층 — 잘못 입력된 상태의 기록. 전 연령이 체크돼 있는데, 12세 이하를 포함하면 가족 정책 심사가 통째로 붙는다. "만 18세 이상"만 남기고 해제했다" loading="lazy"><figcaption>타겟층 — 잘못 입력된 상태의 기록. 전 연령이 체크돼 있는데, 12세 이하를 포함하면 가족 정책 심사가 통째로 붙는다. "만 18세 이상"만 남기고 해제했다</figcaption></figure>
+  <figure><img src="img/REL-2.4-content-rating-02.png" alt="설문 1단계 — 이메일·카테고리('다른 모든 앱 유형'). 문항은 전부 '아니요' → 전체이용가" loading="lazy"><figcaption>설문 1단계 — 이메일·카테고리("다른 모든 앱 유형"). 문항은 전부 "아니요" → 전체이용가</figcaption></figure>
+  <figure><img src="img/REL-2.5-target-audience-01.png" alt="타겟층 — 잘못 입력된 상태의 기록. 전 연령이 체크돼 있는데, 12세 이하를 포함하면 가족 정책 심사가 통째로 붙는다. '만 18세 이상'만 남기고 해제했다" loading="lazy"><figcaption>타겟층 — 잘못 입력된 상태의 기록. 전 연령이 체크돼 있는데, 12세 이하를 포함하면 가족 정책 심사가 통째로 붙는다. "만 18세 이상"만 남기고 해제했다</figcaption></figure>
   <div class="note warn">
     <b>이 단계에서 나온 실수 두 가지 — 다음 앱에서 반복하지 말 것.</b> ① 타겟 연령을 전부 체크(위 캡처). ② 등급 설문 이메일에 개인 주소 입력 — 회사 공개 주소로 통일해야 합니다. 둘 다 제출 전에 잡았습니다.
   </div>
@@ -239,8 +239,8 @@ a{color:var(--accent);text-underline-offset:3px}
 </section>
 
 <section>
-  <h2>5.5 비공개 테스트 (Closed/Alpha) <span class="v v-mid" style="font-size:.85rem">검토 중</span></h2>
-  <p class="subtle">테스트 및 출시 → 테스트 → 비공개 테스트 · 2026-08-18 제출 · 캡처 5장 실측</p>
+  <h2>5.5 비공개 테스트 (Closed/Alpha) <span class="v v-ok" style="font-size:.85rem">승인·게시됨</span></h2>
+  <p class="subtle">테스트 및 출시 → 테스트 → 비공개 테스트 · 2026-08-18 제출 → 같은 날 승인·출시 · 캡처 5장 실측</p>
   <div class="note bad">
     <b>정정 — 08-13 새벽 "프로덕션 제출 완료" 기록은 오기.</b> 08-18 콘솔 실측 결과 프로덕션 트랙 비활성, 검토 대기·미게시 변경 <b>0건</b> — 제출이 반영되지 않았습니다. 추정 원인: 게시 개요(Publishing overview)의 <b>"변경사항 검토 제출" 최종 클릭 누락</b>. 재발 방지 확인법: 제출 후 게시 개요에 "검토 중인 변경사항"이 표시되는지 반드시 확인.
   </div>
@@ -254,7 +254,7 @@ a{color:var(--accent);text-underline-offset:3px}
     <li><b>미리보기 — 경고 1건</b>
       <p>네이티브 디버그 기호 미업로드. 제출 비차단이며 Kotlin 앱은 통상 무시 가능</p></li>
     <li><b>게시 개요 → 변경사항 3건 검토 제출</b>
-      <p>버전 출시·트랙 재시작·테스터 설정 3건 제출 → 상태 "검토 중인 변경사항". 사전 검사 최대 ~14분 → 심사 큐(통상 7일 이내)</p></li>
+      <p>버전 출시·트랙 재시작·테스터 설정 3건 제출 → 상태 "검토 중인 변경사항". 사전 검사 최대 ~14분 → 심사 큐(통상 7일 이내). 실측(콘솔 표시 시각): <span class="num">09:31</span> 제출 → <span class="num">09:44</span> 승인(<span class="num">13</span>분) → <span class="num">21:47</span> 출시됨 — 공식 안내보다 훨씬 짧았으나 1회 실측이라 일반화 금지</p></li>
   </ol>
   <figure><img src="img/REL-5.5-closed-test-04.png" alt="① 테스터 목록 화면 — 기존 목록 사전테스트(5명) 체크 직전" loading="lazy"><figcaption>① 테스터 목록 화면 — 기존 목록 '사전테스트'(5명) 체크 직전</figcaption></figure>
   <figure><img src="img/REL-5.5-closed-test-06.png" alt="② 번들 3(1.2.0)이 추가된 버전 세부정보 — 라이브러리에서 추가 대화상자는 미촬영, 결과 화면으로 대체" loading="lazy"><figcaption>② 번들 3(1.2.0)이 추가된 버전 세부정보 — "라이브러리에서 추가" 대화상자 자체는 미촬영, 결과 화면으로 대체</figcaption></figure>
@@ -264,12 +264,15 @@ a{color:var(--accent);text-underline-offset:3px}
   <div class="note">
     <b>조직 계정 면제.</b> "테스터 12명 이상 × 연속 14일" 요건은 2023-11-13 이후 생성된 <b>개인 계정 전용</b> — Vravio Inc는 조직 계정이라 면제. 심사 통과 즉시 프로덕션 승급 가능.
   </div>
-  <p>다음 단계 — 심사 통과 후 프로덕션 승급: 국가/지역 선택(아래 6단계), 동일 번들 3을 라이브러리에서 추가, <b>게시 개요 제출까지 완료 확인</b>.</p>
+  <div class="note">
+    <b>승인 직후 콘솔에 "다음 출시 버전을 위한 발견 항목" 2건.</b> 카테고리 사용자 환경, 비차단. ① Edge-to-edge 인셋 처리(targetSdk 35+) ② Android 15 지원 중단 API <span class="num">setStatusBarColor</span>/<span class="num">setNavigationBarColor</span> 호출. 빌드 경고 "네이티브 디버그 기호 미포함"과 함께 다음 릴리스(versionCode <span class="num">4</span>)에서 수정 예정. <b>관리형 게시가 켜져 있어 승인 ≠ 게시</b> — 게시 개요 › "관리형 게시가 사용 설정됨" › 변경사항 게시까지 확인. 승인 후 설치 <span class="num">0</span>명 — 테스터에게 옵트인 링크 배포가 남았다.
+  </div>
+  <p>다음 단계 — 프로덕션 승급(STEP 0 재확인 후): 국가/지역 선택(아래 6단계), 동일 번들 3을 라이브러리에서 추가, <b>게시 개요 제출까지 완료 확인</b>.</p>
 </section>
 
 <section>
   <h2>6. 프로덕션 <span class="v v-mid" style="font-size:.85rem">진행 예정</span></h2>
-  <p class="subtle">비공개 테스트 심사 통과 후 진행</p>
+  <p class="subtle">비공개 테스트 승인 완료 — STEP 0 재확인 후 착수</p>
   <ul class="items">
     <li><b>국가 선택</b> — EEA 30국·영국·스위스 제외(광고 도입 대비 GDPR 동의폼 미구현). 최초 1회만 수동, 이후 상속</li>
     <li><b>동일 AAB 승격</b> — 내부 테스트에 올린 바이너리를 라이브러리에서 선택. 재빌드 금지</li>

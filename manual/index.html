@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Google Play 배포 매뉴얼 v1</title>
+<title>Google Play 배포 매뉴얼 v1.2</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <!-- theme: Quiet Sheet v1 - source of truth: process/theme.css -->
@@ -159,18 +159,19 @@ a{color:var(--accent);text-underline-offset:3px}
   <div class="mark"></div>
   <p class="kicker">AosAppCreater — 배포 표준 절차서</p>
   <h1>Google Play<br><span>배포 매뉴얼</span></h1>
-  <p class="standfirst">앱 중립 절차서. Diem 1회 실측(2026-08-12~08-18)에서 확인된 순서·함정을 표준화했다. 다음 앱(Penna 등)은 이 문서의 [예시] 값만 자기 값으로 바꿔 그대로 따라간다.</p>
-  <p class="dateline">v1.1 · 2026-08-18 · Diem 1회 실측 기반 · 실측이 갱신되면 이 페이지를 먼저 고친다</p>
+  <p class="standfirst">앱 중립 절차서. Diem 1회 실측(2026-08-12~08-21)에서 확인된 순서·함정을 표준화했다. 다음 앱(Penna 등)은 이 문서의 [예시] 값만 자기 값으로 바꿔 그대로 따라간다.</p>
+  <p class="dateline">v1.2 · 2026-08-21 · Diem 1회 실측 기반 · 실측이 갱신되면 이 페이지를 먼저 고친다</p>
 </header>
 
 <div class="spec">
   <dl>
     <div><dt>단계</dt><dd class="num">8</dd></div>
     <div><dt>실측 완료</dt><dd class="num" style="color:var(--mint)">6</dd></div>
-    <div><dt>추가 예정</dt><dd class="num" style="color:var(--amber)">2</dd></div>
-    <div><dt>함정</dt><dd class="num">8<span class="unit"> 건 (전부 실측)</span></dd></div>
+    <div><dt>추가 예정</dt><dd class="num" style="color:var(--amber)">1</dd></div>
+    <div><dt>일부 실측</dt><dd class="num">1</dd></div>
+    <div><dt>함정</dt><dd class="num">9<span class="unit"> 건 (전부 실측)</span></dd></div>
     <div><dt>참조 캡처</dt><dd class="num">16<span class="unit"> 장</span></dd></div>
-    <div><dt>실측 기간</dt><dd class="num" style="font-size:1.02rem;padding-top:6px">08-12 ~ 08-18</dd></div>
+    <div><dt>실측 기간</dt><dd class="num" style="font-size:1.02rem;padding-top:6px">08-12 ~ 08-21</dd></div>
   </dl>
 </div>
 
@@ -209,7 +210,7 @@ a{color:var(--accent);text-underline-offset:3px}
     <li><b>keystore 생성·백업</b> — 업로드 키를 만들고 <b>오프사이트 포함 2곳 이상</b> 백업. 비밀번호는 키 파일과 다른 곳(비밀번호 관리자)에. Play 앱 서명 덕에 분실해도 재설정은 가능하지만, <b>첫 업로드 전 구간이 가장 위험</b>하다</li>
     <li><b>개인정보처리방침 HTML 호스팅</b> — GitHub Pages로 충분(실측). 조건: HTTPS · 로그인 없이 접근 · 자리표시자([연락 이메일] 등) 0건. 연락처는 <b>[공개 연락용 회사 이메일]</b>로 — 스토어·심사에 공개된다</li>
     <li><b>스토어 자산</b> — 아이콘 <span class="num">512×512</span> PNG · 피처 그래픽 <span class="num">1024×500</span> · 폰 스크린샷 <span class="num">1080×2160</span>(2:1) 최소 2장 [예시: Diem 8장]</li>
-    <li><b>서명된 AAB</b> — <span class="num">bundleRelease</span> 빌드 후 <span class="num">jarsigner -verify</span>로 "jar verified" 확인. 유닛 테스트 전체 통과가 선행 조건 [예시: Diem 79개 PASS · AAB 12.54MB]</li>
+    <li><b>서명된 AAB</b> — <span class="num">bundleRelease</span> 빌드 후 <span class="num">jarsigner -verify</span>로 "jar verified" 확인. 유닛 테스트 전체 통과가 선행 조건 [예시: Diem 80개 PASS · AAB 13.1MB]</li>
   </ul>
 </section>
 
@@ -329,6 +330,9 @@ a{color:var(--accent);text-underline-offset:3px}
   <figure><img src="../deploy/img/REL-5.5-closed-test-06.png" alt="② 라이브러리에서 추가된 번들의 버전 세부정보" loading="lazy"><figcaption>② "라이브러리에서 추가"로 번들이 들어간 버전 세부정보</figcaption></figure>
   <figure><img src="../deploy/img/REL-5.5-closed-test-10.png" alt="④ 미리보기 경고 — 네이티브 디버그 기호 미업로드, 제출 비차단" loading="lazy"><figcaption>④ 미리보기 경고 — 네이티브 디버그 기호 미업로드 (제출 비차단)</figcaption></figure>
   <figure><img src="../deploy/img/REL-5.5-closed-test-14.png" alt="⑤ 게시 개요 — 검토 중인 변경사항 표시, 제출 완료" loading="lazy"><figcaption>⑤ 게시 개요 — "검토 중인 변경사항" 표시가 제출 완료의 증거</figcaption></figure>
+  <div class="note">
+    <b>[예시: Diem] 실측 심사 시간 — 제출→승인 <span class="num">13</span>분.</b> 공식 안내 "통상 7일 이내"보다 훨씬 짧았다 — 단 1회 실측, 일반화 금지. 승인 후 "출시됨"까지 같은 날 반영(콘솔 표시 시각 <span class="num">09:31</span> 제출 → <span class="num">09:44</span> 승인 → <span class="num">21:47</span> 출시됨). 출시 노트는 <b>"이전 버전에서 복사" › 소스 트랙/버전 선택 › "노트 복사"</b>가 번역 포함 가장 빠르다.
+  </div>
 </section>
 
 <section id="step-6">
@@ -342,9 +346,13 @@ a{color:var(--accent);text-underline-offset:3px}
 </section>
 
 <section id="step-7">
-  <h2>STEP 7. 심사 후 <span class="v v-mid" style="font-size:.85rem">추가 예정</span></h2>
-  <p class="subtle">뼈대 — 첫 통과 후 실측 기입</p>
+  <h2>STEP 7. 심사 후 <span class="v v-mid" style="font-size:.85rem">일부 실측(비공개 테스트) · 프로덕션 심사는 추가 예정</span></h2>
+  <p class="subtle">비공개 테스트 승인(08-18)에서 실측한 것 + 프로덕션 심사 뼈대</p>
   <ul class="items">
+    <li><b>승인 알림의 형태</b> — 이메일 "새 게시 사항"은 작업 요청이 아니라 <b>게시 완료 알림</b>("앱 업데이트가 게시되었습니다")일 수 있다. 게시 개요에 대기 변경 <span class="num">0</span>건이면 할 일은 끝 [실측: Diem 08-21]</li>
+    <li><b>승인 직후 "다음 출시 버전을 위한 발견 항목"</b> — 사용자 환경 카테고리·비차단으로 콘솔에 뜰 수 있다 [예시: Diem — edge-to-edge 인셋(targetSdk 35+), Android 15 deprecated 시스템바 API]. 현재 릴리스는 그대로 두고 다음 versionCode에서 수정</li>
+    <li><b>관리형 게시가 켜져 있으면 승인 ≠ 게시</b> — 게시 개요 › "관리형 게시가 사용 설정됨" › <b>변경사항 게시</b>를 눌러야 사용자에게 보인다(함정 9)</li>
+    <li><b>비공개 테스트 승인 후 설치 0명</b> — 정상. 테스터에게 옵트인 링크(Android/웹)를 배포해야 설치가 시작된다</li>
     <li><b>통과 확인</b> — 통과 메일 수신 → 스토어 검색·설치·스크린샷 표시를 30분 내 확인. 대기 중(신규 앱 통상 3~7일)에는 새 버전 제출 금지 — 대기열 뒤로 밀린다</li>
     <li><b>반려 대응</b> — 사유 메일 캡처 → 각 앱 PLAY_RELEASE_GUIDE.md 부록 A(반려 유형별 대응표) 기준으로 수정 후 재제출</li>
   </ul>
@@ -364,6 +372,7 @@ a{color:var(--accent);text-underline-offset:3px}
       <tr><td class="num">6</td><td><b>타겟층 전 연령 체크 → 가족 정책 발동</b> — 12세 이하 포함 시 별도 심사가 통째로 붙는다</td><td>"만 18세 이상" 단독 권장. 스토어 노출·검색에는 영향 없음</td></tr>
       <tr><td class="num">7</td><td><b>IARC 설문 이메일에 개인 주소 입력</b> — 등급 인증서 수신 주소가 노출 경로가 된다</td><td><b>[공개 연락용 회사 이메일]</b>로 통일. 방침·스토어 연락처와 같은 주소</td></tr>
       <tr><td class="num">8</td><td><b>공개 git 리포에 개인 이메일로 커밋</b> — 전역 git 설정이 개인 계정이면 공개 리포에 그대로 박힌다</td><td>커밋 전 리포별 identity 확인: <span class="num">git log -1 --format="%an %ae"</span>. 리포 로컬 config로 회사 계정 고정</td></tr>
+      <tr><td class="num">9</td><td><b>관리형 게시 — 승인 메일이 와도 스토어에 안 보인다</b> — 관리형 게시가 켜진 계정은 승인과 게시가 분리돼 있다</td><td>게시 개요 › "관리형 게시가 사용 설정됨" › <b>변경사항 게시</b>를 안 누른 것. 누른 뒤 대기 변경 <span class="num">0</span>건 확인</td></tr>
     </tbody>
   </table>
   <figure><img src="../deploy/img/REL-5.4-publishing-overview-01.png" alt="함정 1 — 게시 개요의 검토를 위해 제출 버튼" loading="lazy"><figcaption>함정 1 — 게시 개요의 "검토를 위해 제출" 버튼. 여기까지 눌러야 심사가 시작된다</figcaption></figure>
@@ -390,7 +399,7 @@ a{color:var(--accent);text-underline-offset:3px}
 </section>
 
 <footer>
-  <p><b>이력</b> — v1.1 (2026-08-18): STEP 1·2·4 캡처 16장 임베드 + 목차 추가 · v1.0 (2026-08-18): 초판. STEP 0~5 실측 완료분 + 함정 8건 수록, STEP 6·7·GPP 자동화는 뼈대만. <b>실측이 갱신되면 이 페이지를 먼저 고친다.</b></p>
+  <p><b>이력</b> — v1.2 (2026-08-21): 비공개 테스트 승인 실측(13분)·STEP 7 일부 실측·함정 9번 추가 · v1.1 (2026-08-18): STEP 1·2·4 캡처 11장 임베드(누적 16장) + 목차 추가 · v1.0 (2026-08-18): 초판. STEP 0~5 실측 완료분 + 함정 8건 수록, STEP 6·7·GPP 자동화는 뼈대만. <b>실측이 갱신되면 이 페이지를 먼저 고친다.</b></p>
   <p>원자료 — <a href="../deploy/">Diem, Google Play 배포 실행 기록</a> (실측 캡처) · <a href="../">앱 생성·배포 자동화 검토 보고</a></p>
   <p>계정·앱 식별번호와 개인 연락처는 본문·캡처 모두 미포함. 테마: Quiet Sheet.</p>
 </footer>
