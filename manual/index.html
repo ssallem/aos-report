@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Google Play 배포 매뉴얼 v2.0</title>
+<title>Google Play 배포 매뉴얼 v2.1</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <!-- theme: Quiet Sheet v1 - source of truth: process/theme.css -->
@@ -160,7 +160,7 @@ a{color:var(--accent);text-underline-offset:3px}
   <p class="kicker">AosAppCreater — 배포 표준 절차서</p>
   <h1>Google Play<br><span>배포 매뉴얼</span></h1>
   <p class="standfirst">앱 중립 절차서. Diem 1회 실측(2026-08-12~08-21)에서 확인된 순서·함정을 8단계로 표준화했다. 다음 앱은 각 STEP 끝의 [예시: Diem] 값만 자기 값으로 바꿔 그대로 따라간다.</p>
-  <p class="dateline">v2.0 · 2026-08-21 · Diem 1회 실측 기반 · 실측이 갱신되면 이 페이지를 먼저 고친다</p>
+  <p class="dateline">v2.1 · 2026-08-27 · Diem 1회 실측 기반 · 실측이 갱신되면 이 페이지를 먼저 고친다</p>
 </header>
 
 <div class="spec">
@@ -168,7 +168,7 @@ a{color:var(--accent);text-underline-offset:3px}
     <div><dt>단계</dt><dd class="num">8</dd></div>
     <div><dt>실측 완료</dt><dd class="num" style="color:var(--mint)">6<span class="unit"> STEP 0~5</span></dd></div>
     <div><dt>승인 대기</dt><dd class="num" style="color:var(--amber)">2<span class="unit"> STEP 6·7</span></dd></div>
-    <div><dt>함정</dt><dd class="num">11<span class="unit"> 건</span></dd></div>
+    <div><dt>함정</dt><dd class="num">12<span class="unit"> 건</span></dd></div>
     <div><dt>참조 캡처</dt><dd class="num">40<span class="unit"> 장</span></dd></div>
     <div><dt>실측 기간</dt><dd class="num">08-12<span class="unit"> ~ </span>08-21</dd></div>
   </dl>
@@ -230,14 +230,14 @@ a{color:var(--accent);text-underline-offset:3px}
   <ol class="seq">
     <li><b>앱 이름</b>
       <p>30자 이내. 스토어 등록정보에서 나중에 수정 가능.</p></li>
+    <li><b>패키지 이름</b> <span class="when">생성 후 변경 불가</span>
+      <p>빌드의 applicationId(<span class="num">app/build.gradle.kts</span>)를 그대로 입력하고 [사용 가능 여부 확인]을 누른다. 오타 하나면 앱을 지우고 다시 만들어야 한다.</p></li>
     <li><b>기본 언어</b>
       <p>전 세계 기본 노출 언어. 나머지 언어는 스토어 등록정보에서 번역으로 추가한다.</p></li>
     <li><b>앱 또는 게임 · 무료 또는 유료</b> <span class="when">무료 → 유료 전환은 영구 불가</span>
       <p>앱/게임을 잘못 고르면 IARC 설문이 통째로 달라진다. 유료 → 무료는 가능.</p></li>
-    <li><b>선언 2개</b>
-      <p>개발자 프로그램 정책 + 미국 수출법, 둘 다 체크.</p></li>
-    <li><b>만들기</b>
-      <p>생성 직후 대시보드에 "할 일" 목록이 펼쳐진다 — 이 문서의 STEP 2~4 순서와 같다.</p></li>
+    <li><b>선언 2개 → 만들기</b>
+      <p>개발자 프로그램 정책 + 미국 수출법, 둘 다 체크 후 만들기. 생성 직후 대시보드에 "할 일" 목록이 펼쳐진다 — 이 문서의 STEP 2~4 순서와 같다.</p></li>
   </ol>
   <div class="pair">
     <figure><img src="../deploy/img/REL-1-create-app-02.png" alt="앱 만들기 폼 전체 — 앱 이름·패키지 이름·기본 언어·앱/게임·무료/유료·선언 2개" loading="lazy"><figcaption>앱 만들기 폼 — 이름·패키지·언어·앱/게임·무료</figcaption></figure>
@@ -247,9 +247,9 @@ a{color:var(--accent);text-underline-offset:3px}
     <figure><a href="../deploy/img/REL-1-create-app-01.png" target="_blank" rel="noopener"><img src="../deploy/img/REL-1-create-app-01.png" alt="조직 홈 — 첫 번째 앱 만들기 버튼" loading="lazy"></a><figcaption>조직 홈 — 첫 번째 앱 만들기</figcaption></figure>
   </div>
   <div class="note warn" id="note-1">
-    <b>실측 — 패키지 이름 입력란이 이 폼에 존재한다.</b> 구 문서에는 없던 항목(과거엔 첫 AAB 업로드 시점에 확정). 입력 후 [사용 가능 여부 확인]을 클릭하고, 값은 빌드의 applicationId와 일치해야 하며 <b>생성 후 변경할 수 없다</b>.
+    <b>실측 — 패키지 이름 입력란이 이 폼에 존재한다.</b> 구 문서에는 없던 항목(과거엔 첫 AAB 업로드 시점에 확정). 입력 후 [사용 가능 여부 확인]을 클릭하고, 값은 빌드의 applicationId와 일치해야 하며 <b>생성 후 변경할 수 없다</b>(함정 12).
   </div>
-  <p class="subtle">실측: Diem – D-Day Countdown Widget(29/30) · en-US · 앱 · 무료 → <a href="../deploy/">배포 기록</a> 1절</p>
+  <p class="subtle">실측: Diem – D-Day Countdown Widget(29/30) · <span class="num">com.vravio.diem</span> · en-US · 앱 · 무료 → <a href="../deploy/">배포 기록</a> 1절</p>
   <p class="subtle"><a href="#top">↑ 8단계 한눈에</a></p>
 </section>
 
@@ -458,6 +458,7 @@ a{color:var(--accent);text-underline-offset:3px}
       <tr><td class="num">9</td><td>관리형 게시 — 승인 ≠ 게시, "변경사항 게시" 클릭 필요</td><td><a href="#note-7">STEP 7</a></td></tr>
       <tr><td class="num">10</td><td>국가/지역은 트랙별 독립 — 프로덕션은 0개에서 시작</td><td><a href="#note-6-2">STEP 6</a></td></tr>
       <tr><td class="num">11</td><td>앱 서명 키는 공개 트랙 게시 후 고정(비가역)</td><td><a href="#note-6">STEP 6</a></td></tr>
+      <tr><td class="num">12</td><td>패키지 이름은 앱 생성 시 확정·변경 불가 — 빌드 applicationId와 사전 대조</td><td><a href="#note-1">STEP 1</a></td></tr>
     </tbody>
   </table>
   <p class="subtle"><a href="#top">↑ 8단계 한눈에</a></p>
@@ -485,7 +486,7 @@ a{color:var(--accent);text-underline-offset:3px}
 </section>
 
 <footer>
-  <p><b>이력</b> — v2.0 (2026-08-21): 전면 재구성 — 8단계 한눈에 표·.pair/.strip 배치·STEP 6 프로덕션 실측 18장·함정 11 · v1.2 (2026-08-21): 비공개 테스트 승인 실측(13분)·STEP 7 일부 실측·함정 9번 추가 · v1.1 (2026-08-18): STEP 1·2·4 캡처 11장 임베드(누적 16장) + 목차 추가 · v1.0 (2026-08-18): 초판. STEP 0~5 실측 완료분 + 함정 8건 수록, STEP 6·7·GPP 자동화는 뼈대만. <b>실측이 갱신되면 이 페이지를 먼저 고친다.</b></p>
+  <p><b>이력</b> — v2.1 (2026-08-27): STEP 1에 패키지 이름 단계·Diem 값(com.vravio.diem) 명시, 함정 12 추가 · v2.0 (2026-08-21): 전면 재구성 — 8단계 한눈에 표·.pair/.strip 배치·STEP 6 프로덕션 실측 18장·함정 11 · v1.2 (2026-08-21): 비공개 테스트 승인 실측(13분)·STEP 7 일부 실측·함정 9번 추가 · v1.1 (2026-08-18): STEP 1·2·4 캡처 11장 임베드(누적 16장) + 목차 추가 · v1.0 (2026-08-18): 초판. STEP 0~5 실측 완료분 + 함정 8건 수록, STEP 6·7·GPP 자동화는 뼈대만. <b>실측이 갱신되면 이 페이지를 먼저 고친다.</b></p>
   <p>원자료 — <a href="../deploy/">Diem, Google Play 배포 실행 기록</a> (실측 캡처) · <a href="../">앱 생성·배포 자동화 검토 보고</a></p>
   <p>계정·앱 식별번호와 개인 연락처는 본문·캡처 모두 미포함. 테마: Quiet Sheet.</p>
 </footer>
